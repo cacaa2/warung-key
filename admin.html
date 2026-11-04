@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard Owner</title><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body>
+<header><a class="logo" href="index.html">Dashboard Owner<small>Warung Cemilan Key</small></a><a class="btn" style="background:#fff;text-decoration:none;color:#000" href="index.html">Ke toko</a></header>
+<main><div class="stats" id="st"></div>
+<div class="panel"><h2>Pesanan masuk</h2><div id="list"></div></div>
+<div class="two"><div class="panel"><h2>Tren penjualan (7 hari)</h2><div class="bars" id="trend"></div><div style="height:26px"></div></div>
+<div class="panel"><h2>Menu terlaris</h2><div id="terlaris"></div></div></div>
+<button class="btn y" style="width:auto;margin:0 8px 0 0" onclick="seed()">Isi data contoh</button>
+<button class="btn" style="background:#fff" onclick="if(confirm('Hapus semua pesanan?')){save('orders',[]);location.reload()}">Hapus semua</button>
+<p class="note">Data tersimpan di browser (localStorage), jadi dashboard hanya melihat pesanan dari browser yang sama. Untuk data bersama, perlu backend dan database.</p></main>
+<script src="data.js"></script><script>
+const o=load("orders",[]);
+const sum=o.reduce((a,x)=>a+x.total,0);
+const qtyAll=o.reduce((a,x)=>a+x.item.reduce((b,i)=>b+i.q,0),0);
+st.innerHTML=[["Total penjualan",rp(sum)],["Jumlah transaksi",o.length],["Rata-rata transaksi",rp(o.length?Math.round(sum/o.length):0)],["Jumlah pesanan",qtyAll]].map(([a,b])=>`<div class="stat"><small>${a}</small><b>${b}</b></div>`).join("");
+list.innerHTML=o.slice().reverse().slice(0,8).map(x=>`<div class="row"><span><b>${x.id}</b> ${x.nama}<br><small>${x.item.map(i=>i.nama+" x"+i.q).join(", ")}</small></span><span style="text-align:right">${rp(x.total)}<br><span class="tag">${x.status}</span></span></div>`).join("")||"<p>Belum ada pesanan. Buat pesanan di halaman toko, atau klik Isi data contoh.</p>";
+const days=[...Array(7)].map((_,i)=>{const d=new Date();d.setDate(d.getDate()-6+i);return d.toISOString().slice(0,10)});
+const per=days.map(d=>o.filter(x=>x.waktu.slice(0,10)==d).reduce((a,x)=>a+x.total,0));
+const mx=Math.max(...per,1);
+trend.innerHTML=per.map((v,i)=>`<div class="bar" title="${rp(v)}" style="height:${v/mx*100}%"><span>${days[i].slice(8)}</span></div>`).join("");
+const cnt={};o.forEach(x=>x.item.forEach(i=>cnt[i.nama]=(cnt[i.nama]||0)+i.q));
+terlaris.innerHTML=Object.entries(cnt).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([n,q])=>`<div class="row"><span>${n}</span><b>${q}</b></div>`).join("")||"<p>Belum ada data.</p>";
+function seed(){const a=load("orders",[]);for(let i=0;i<12;i++){const d=new Date();d.setDate(d.getDate()-Math.floor(Math.random()*7));
+const its=[...MENU].sort(()=>Math.random()-.5).slice(0,1+Math.floor(Math.random()*3)).map(m=>({nama:m.nama,q:1+Math.floor(Math.random()*2),harga:m.harga}));
+a.push({id:"ORD-"+(100000+i),waktu:d.toISOString(),nama:"Pelanggan "+(i+1),metode:["QRIS","E-wallet","Transfer bank / VA"][i%3],status:"lunas",total:its.reduce((s,x)=>s+x.harga*x.q,0),item:its})}
+save("orders",a);location.reload()}
+</script></body></html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Warung Cemilan Key</title><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body>
+<header><a class="logo" href="index.html">Warung Cemilan Key<small>Cemilan Kekinian & Lezat!</small></a><a class="btn" style="background:#fff;text-decoration:none;color:#000" href="admin.html">Dashboard Owner</a></header>
+<section class="hero"><h1>Lagi Pengen Ngemil?</h1><p>Pilih menu favoritmu, bayar otomatis, langsung proses!</p></section>
+<main><div class="grid" id="grid"></div></main>
+<button class="btn fab" onclick="dlg.showModal()">Keranjang (<span id="cnt">0</span>)</button>
+<dialog id="dlg"><h2 style="margin-top:0;font-family:Fredoka">Pesananmu</h2><div id="items"></div>
+<div class="tot"><span>Total</span><span id="tot">Rp 0</span></div>
+<form onsubmit="bayar(event)"><label>Nama</label><input id="nama" required>
+<label>Metode bayar</label><select id="metode"><option>QRIS</option><option>E-wallet</option><option>Transfer bank / VA</option></select>
+<p class="note">Pembayaran masih simulasi. Di versi backend, status "lunas" diisi otomatis oleh webhook payment gateway.</p>
+<button class="btn p" style="margin-top:12px">Bayar sekarang</button></form>
+<button class="btn" style="margin-top:8px;width:100%" onclick="dlg.close()">Tutup</button></dialog>
+<dialog id="ok"><h2 style="margin-top:0;font-family:Fredoka">Pembayaran berhasil</h2><p id="okmsg"></p>
+<a id="wa" class="btn p" style="display:block;text-align:center;text-decoration:none" target="_blank">Kirim pesanan ke WhatsApp</a>
+<button class="btn" style="margin-top:8px;width:100%" onclick="ok.close()">Selesai</button></dialog>
+<script src="data.js"></script><script>
+let cart=load("cart",{});
+grid.innerHTML=MENU.map(m=>`<article class="card"><div class="pic">${m.e}</div><h3>${m.nama}</h3><p class="hrg">${rp(m.harga)}</p><button class="btn y" onclick="add(${m.id})">Tambah</button></article>`).join("");
+const find=id=>MENU.find(m=>m.id==id);
+const add=id=>{cart[id]=(cart[id]||0)+1;upd()};
+const chg=(id,d)=>{cart[id]+=d;if(cart[id]<=0)delete cart[id];upd()};
+const total=()=>Object.entries(cart).reduce((s,[id,q])=>s+find(id).harga*q,0);
+function upd(){save("cart",cart);cnt.textContent=Object.values(cart).reduce((a,b)=>a+b,0);
+items.innerHTML=Object.entries(cart).map(([id,q])=>`<div class="row"><span>${find(id).nama}<br><small>${rp(find(id).harga)}</small></span><span class="qty"><button onclick="chg(${id},-1)">-</button>${q}<button onclick="chg(${id},1)">+</button></span></div>`).join("")||"<p>Keranjang masih kosong. Pilih menu dulu.</p>";
+tot.textContent=rp(total())}
+function bayar(e){e.preventDefault();if(!total())return alert("Keranjang masih kosong.");
+const o={id:"ORD-"+Date.now().toString().slice(-6),waktu:new Date().toISOString(),nama:nama.value,metode:metode.value,status:"lunas",total:total(),
+item:Object.entries(cart).map(([id,q])=>({nama:find(id).nama,q,harga:find(id).harga}))};
+const all=load("orders",[]);all.push(o);save("orders",all);
+const t="Halo, saya "+o.nama+". Pesanan "+o.id+":\n"+o.item.map(i=>"- "+i.nama+" x"+i.q).join("\n")+"\nTotal "+rp(o.total)+" ("+o.metode+", lunas)";
+wa.href="https://wa.me/"+WA+"?text="+encodeURIComponent(t);
+okmsg.textContent="Pesanan "+o.id+" tercatat dengan total "+rp(o.total)+".";
+cart={};upd();dlg.close();ok.showModal()}
+upd();
+</script></body></html>
