@@ -90,3 +90,10 @@ input,select{width:100%;padding:9px;border:2px solid #000;border-radius:10px;fon
 .heart{position:absolute;right:6%;top:6%;background:#fff;border-radius:50%;width:46px;height:46px;display:grid;place-items:center;color:var(--pink);box-shadow:0 8px 20px #b0183d2b}
 .deco{position:absolute;font-size:1.6rem}.d1{left:12%;top:10%}.d2{right:2%;top:46%}
 @media(max-width:760px){.c1{left:0}.c2{right:0}}
+.c1,.c2{top:auto;height:auto}
+.c2{right:0;bottom:-4%}
+.c1{left:0}
+.chip{padding:6px 12px;gap:8px}
+.chip .ic{width:30px;height:30px;font-size:.9rem}
+.chip b{font-size:.85rem}
+.chip small{font-size:.65rem}
