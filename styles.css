@@ -93,6 +93,9 @@ input,select{width:100%;padding:9px;border:2px solid #000;border-radius:10px;fon
 .c1,.c2{top:auto;height:auto}
 .c2{right:0;bottom:-4%}
 .c1{left:0}
+.play{width:44px;height:44px;border:0;border-radius:50%;overflow:hidden;padding:0;background:none;box-shadow:0 4px 10px #0003}
+.play img{width:100%;height:100%;object-fit:cover;transform:scale(1.4);display:block}
+.wlink{text-decoration:none}
 .chip{padding:6px 12px;gap:8px}
 .chip .ic{width:30px;height:30px;font-size:.9rem}
 .chip b{font-size:.85rem}
