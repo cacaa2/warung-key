@@ -15,6 +15,7 @@ const MENU = [
   { id: 6, nama: "Mie Goreng", harga: 15000, kat: "Cemilan", e: "🍜", foto: "img/miegoreng.jpg" },
   { id: 7, nama: "Salad Buah", harga: 13000, kat: "Cemilan", e: "🥗", foto: "img/saladbuah.jpg" },
   { id: 8, nama: "Es Teh", harga: 5000, kat: "Minuman", e: "🧋", foto: "img/esteh.jpg" }
+  { id: 9, nama: "Ricebowl", harga:15000, kat: "Makanan", e: "🧋", foto: "img/ricebowl.jpg" }
 ];
 
 // ===== FUNGSI BANTU =====
