@@ -2,37 +2,58 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Warung Cemilan Key</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"></head><body>
-<header><div class="logo">Warung Cemilan Key<small>Cemilan Kekinian & Lezat!</small></div>
-<nav><button class="btn" onclick="show('toko')">Toko</button><button class="btn" onclick="show('admin')">Dashboard Owner</button></nav></header>
+<link rel="stylesheet" href="styles.css">
+<header><div class="bar"><div class="logo"><i>🍢</i>Warung Cemilan Key</div>
+<nav><a href="#home" onclick="show('toko')">Home</a><a href="#menu" onclick="show('toko')">Menu</a><a href="#keunggulan" onclick="show('toko')">Keunggulan</a><a href="#catering" onclick="show('toko')">Catering</a></nav>
+<div class="act"><button class="btn y" onclick="dlg.showModal()">Keranjang (<span id="cnt">0</span>)</button><button class="btn" onclick="show('admin')">Owner</button></div></div></header>
 
-<section id="toko">
-<div class="hero"><h1>Lagi Pengen Ngemil?</h1><p>Pilih menu favoritmu, bayar otomatis, langsung proses!</p></div>
-<main><div class="grid" id="grid"></div></main>
-<button class="btn fab" onclick="dlg.showModal()">Keranjang (<span id="cnt">0</span>)</button>
-</section>
+<div id="toko">
+<div class="wrap" id="home"><section class="hero">
+<div><span class="tag">⚡ Cemilan • Kekinian • Lezat</span>
+<h1>Lagi Pengen<em>Ngemil?</em>Langsung Pesan!</h1>
+<p>Pilih menu favoritmu, bayar otomatis, langsung proses!</p>
+<div class="cta"><a class="btn p" href="#menu">Pesan Sekarang →</a><a class="wlink" id="waTop" target="_blank"><span class="play">💬</span>Chat WhatsApp</a></div>
+<div class="proof"><span class="ok">✓</span><div><b>Bayar otomatis</b><br><small>QRIS • E-wallet • Transfer bank/VA</small></div></div></div>
+<div class="visual"><div class="blob" id="blob">🍣</div>
+<span class="deco d1">🌶️</span><span class="deco d2">🍃</span><span class="heart">❤</span>
+<div class="chip c1"><span class="ic">🛵</span><div><small>Pesanan</small><b>Langsung diproses</b></div></div>
+<div class="chip c2"><span class="ic">🍱</span><div><small>Menu mulai dari</small><b id="minHarga"></b></div></div></div>
+</section></div>
+<div class="strip"></div>
 
-<section id="admin" hidden><main>
+<div class="wrap sec" id="keunggulan"><div class="eyebrow">Kenapa pilih kami</div><h2 class="t">Pesan Gampang, Bayar Praktis</h2>
+<div class="feat"><div class="f"><span>💳</span><h3>Checkout langsung bayar</h3><p>QRIS, e-wallet, dan transfer bank/VA dalam satu alur.</p></div>
+<div class="f"><span>📋</span><h3>Pesanan tercatat otomatis</h3><p>Pemilik tidak perlu verifikasi manual satu per satu.</p></div>
+<div class="f"><span>📱</span><h3>Ringan dan mudah</h3><p>Nyaman dipakai di HP dengan langkah yang singkat.</p></div></div></div>
+
+<div class="wrap sec" id="menu" style="padding-top:0"><div class="eyebrow">Jelajahi menu</div><h2 class="t">Cemilan yang Bikin Nagih</h2>
+<div class="menu"><div class="cats" id="cats"></div><div class="grid" id="grid"></div></div></div>
+
+<div class="wrap sec" id="catering"><div class="banner"><div><h2>Terima pesanan & catering</h2><p>Mau pesan dalam jumlah banyak? Langsung chat kami.</p></div>
+<a class="btn y" id="waBan" target="_blank">Chat via WhatsApp</a></div></div>
+</div>
+
+<div id="admin" hidden><div class="wrap sec"><h2 class="t" style="text-align:left">Dashboard Owner</h2>
+<button class="btn" onclick="show('toko')">← Kembali ke toko</button>
 <div class="stats" id="st"></div>
 <div class="panel"><h2>Pesanan masuk</h2><div id="list"></div></div>
-<div class="two">
-<div class="panel"><h2>Tren penjualan (7 hari)</h2><div class="bars" id="trend"></div><div style="height:26px"></div></div>
+<div class="two"><div class="panel"><h2>Tren penjualan (7 hari)</h2><div class="bars" id="trend"></div><div style="height:26px"></div></div>
 <div class="panel"><h2>Menu terlaris</h2><div id="terlaris"></div></div></div>
-<button class="btn y" style="width:auto;margin:0 8px 0 0" onclick="seed()">Isi data contoh</button>
-<button class="btn" style="background:#fff" onclick="hapus()">Hapus semua</button>
-<p class="note">Data tersimpan di browser (localStorage), jadi dashboard hanya melihat pesanan dari browser yang sama.</p>
-</main></section>
+<button class="btn y" onclick="seed()">Isi data contoh</button> <button class="btn" onclick="hapus()">Hapus semua</button>
+<p class="note">Data tersimpan di browser (localStorage), jadi dashboard hanya melihat pesanan dari browser yang sama.</p></div></div>
+
+<div class="strip"></div>
+<footer><div class="wrap foot"><div><b>Warung Cemilan Key</b><br>Cemilan Kekinian & Lezat</div><div>Pesan & catering: lewat tombol WhatsApp</div></div></footer>
 
 <dialog id="dlg"><h2 style="margin-top:0;font-family:Fredoka">Pesananmu</h2><div id="items"></div>
 <div class="tot"><span>Total</span><span id="tot">Rp 0</span></div>
 <form onsubmit="bayar(event)"><label>Nama</label><input id="nama" required>
-<label>Metode bayar</label><select id="metode"><option>QRIS</option><option>E-wallet</option><option>Transfer bank / VA</option></select>
-<p class="note">Pembayaran masih simulasi.</p>
-<button class="btn p" style="margin-top:12px">Bayar sekarang</button></form>
+<label>Metode bayar</label><select id="metode" onchange="hitung()"><option>QRIS</option><option>E-wallet</option><option>Transfer bank / VA</option><option>Tunai</option></select>
+<div id="tunai" hidden><label>Uang yang diberikan (Rp)</label><input id="uang" type="number" min="0" oninput="hitung()"><p class="note" id="kembali"></p></div>
+<p class="note">Pembayaran non-tunai masih simulasi.</p>
+<button class="btn p" style="margin-top:12px;width:100%">Bayar sekarang</button></form>
 <button class="btn" style="margin-top:8px;width:100%" onclick="dlg.close()">Tutup</button></dialog>
-
-<dialog id="ok"><h2 style="margin-top:0;font-family:Fredoka">Pembayaran berhasil</h2><p id="okmsg"></p>
-<a id="wa" class="btn p" style="display:block;text-align:center;text-decoration:none" target="_blank">Kirim pesanan ke WhatsApp</a>
+<dialog id="ok"><h2 style="margin-top:0;font-family:Fredoka">Pesanan berhasil</h2><p id="okmsg"></p>
+<a id="wa" class="btn p" style="display:block" target="_blank">Kirim pesanan ke WhatsApp</a>
 <button class="btn" style="margin-top:8px;width:100%" onclick="ok.close()">Selesai</button></dialog>
-
 <script src="script.js"></script></body></html>
