@@ -4,9 +4,9 @@ const HERO_FOTO = "img/hero.jpg";
 // foto: isi path foto di folder img, contoh "img/steak-ayam.jpg". Kosong = pakai emoji.
 const MENU = [
   { id: 1, nama: "Steak Ayam", harga: 25000, kat: "Steak", e: "🍗", foto: "img/steakayam.jpg" },
-  { id: 2, nama: "Steak Ayam Bakar", harga: 27000, kat: "Steak", e: "🔥", foto: "" },
+  { id: 2, nama: "Seblak", harga: 15000, kat: "Cemilan", e: "🔥", foto: "img/seblak.jpg" },
   { id: 3, nama: "Sushi Tobiko", harga: 20000, kat: "Sushi", e: "🍣", foto: "img/sushitobiko.jpg" },
-  { id: 4, nama: "Sushi Mentai", harga: 22000, kat: "Sushi", e: "🍱", foto: "img/sushimentai,jpg" },
+  { id: 4, nama: "Sushi Mentai", harga: 22000, kat: "Sushi", e: "🍱", foto: "img/sushimentai.jpg" },
   { id: 5, nama: "Kentang Goreng", harga: 12000, kat: "Cemilan", e: "🍟", foto: "img/kentanggoreng.jpg" },
   { id: 6, nama: "Mie Goreng", harga: 15000, kat: "Cemilan", e: "🍜", foto: "img/miegoreng.jpg" },
   { id: 7, nama: "Salad Buah", harga: 13000, kat: "Cemilan", e: "🥗", foto: "img/saladbuah.jpg" },
