@@ -1,5 +1,5 @@
 // ===== DATA (edit di sini) =====
-const WA = "6281234567890"; // nomor WhatsApp warung, format 62 tanpa +
+const WA = "62881024851406"; // nomor WhatsApp warung, format 62 tanpa +
 const HERO_FOTO = "img/hero.jpg";
 // foto: isi path foto di folder img, contoh "img/steak-ayam.jpg". Kosong = pakai emoji.
 const MENU = [
