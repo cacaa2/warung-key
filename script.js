@@ -1,7 +1,6 @@
 // ===== DATA (edit di sini) =====
 const WA = "6281234567890"; // nomor WhatsApp warung, format 62 tanpa +
-const HERO_FOTO = "img/hero.jpg";     // opsional: "img/hero.jpg" untuk ganti emoji di hero
-// foto: isi path foto di folder img, contoh "img/steak-ayam.jpg". Kosong = pakai emoji.
+const HERO_FOTO = "img/hero.jpg";    
 const MENU = [
   { id: 1, nama: "Steak Ayam", harga: 25000, kat: "Steak", e: "🍗", foto: "" },
   { id: 2, nama: "Steak Ayam Bakar", harga: 27000, kat: "Steak", e: "🔥", foto: "" },
