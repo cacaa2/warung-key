@@ -4,16 +4,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css"></head><body>
 <header><div class="bar"><div class="logo"><i>🍢</i>Warung Cemilan Key</div>
-<nav><a href="#home" onclick="show('toko')">Home</a><a href="#menu" onclick="show('toko')">Menu</a><a href="#keunggulan" onclick="show('toko')">Keunggulan</a><a href="#catering" onclick="show('toko')">Catering</a></nav>
+<nav><a href="#home" onclick="show('toko')">Home</a><a href="#menu" onclick="show('toko')">Menu</a><a href="#keunggulan" onclick="show('toko')">Tentang</a><a href="#catering" onclick="show('toko')">Catering</a></nav>
 <div class="act"><button class="btn y" onclick="dlg.showModal()">Keranjang (<span id="cnt">0</span>)</button><button class="btn" onclick="show('admin')">Owner</button></div></div></header>
 
 <div id="toko">
 <div class="wrap" id="home"><section class="hero">
 <div><span class="tag">⚡ Cemilan • Kekinian • Lezat</span>
 <h1>Lagi Pengen<em>Ngemil?</em>Langsung Pesan!</h1>
-<p>Pilih menu favoritmu, bayar otomatis, langsung proses!</p>
-<div class="cta"><a class="btn p" href="#menu">Pesan Sekarang →</a><a class="wlink" id="waTop" href="https://wa.me/6281234567890" target="_blank" rel="noopener"><span class="play"><img src="img/whatsapp.png" alt=""></span>Chat WhatsApp</a></div>
-<div class="proof"><span class="ok">✓</span><div><b>Bayar otomatis</b><br><small>QRIS • E-wallet • Transfer bank/VA</small></div></div></div>
+<p>Pilih menu favoritmu, bayar cash atau QRIS, langsung proses!</p>
+<div class="cta"><a class="btn p" href="#menu">Pesan Sekarang →</a><a class="wlink" id="waTop" href="https://wa.me/62881024851406" target="_blank" rel="noopener"><span class="play"><img src="img/whatsapp.png" alt=""></span>Chat WhatsApp</a></div>
+<div class="proof"><span class="ok">✓</span><div><b>Metode pembayaran</b><br><small>Cash / QRIS</small></div></div></div>
 <div class="visual"><div class="blob" id="blob">🍣</div>
 <span class="deco d1">🌶️</span><span class="deco d2">🍃</span><span class="heart">❤</span>
 <div class="chip c1"><span class="ic">🛵</span><div><small>Pesanan</small><b>Langsung diproses</b></div></div>
@@ -21,16 +21,18 @@
 </section></div>
 <div class="strip"></div>
 
-<div class="wrap sec" id="keunggulan"><div class="eyebrow">Kenapa pilih kami</div><h2 class="t">Pesan Gampang, Bayar Praktis</h2>
-<div class="feat"><div class="f"><span>💳</span><h3>Checkout langsung bayar</h3><p>QRIS, e-wallet, dan transfer bank/VA dalam satu alur.</p></div>
-<div class="f"><span>📋</span><h3>Pesanan tercatat otomatis</h3><p>Pemilik tidak perlu verifikasi manual satu per satu.</p></div>
-<div class="f"><span>📱</span><h3>Ringan dan mudah</h3><p>Nyaman dipakai di HP dengan langkah yang singkat.</p></div></div></div>
-
-<div class="wrap sec" id="menu" style="padding-top:0"><div class="eyebrow">Jelajahi menu</div><h2 class="t">Cemilan yang Bikin Nagih</h2>
+<div class="wrap sec" id="menu" style="padding-top:0"><div class="eyebrow">Jelajahi menu</div><h2 class="t">Enjoy Our Taste</h2>
 <div class="menu"><div class="cats" id="cats"></div><div class="grid" id="grid"></div></div></div>
 
+<div class="wrap sec" id="keunggulan">
+<div class="eyebrow">Tentang Warung Key</div>
+<h2 class="t">Tempat Ngemil dan Nongkrong Favoritmu</h2>
+<p style="max-width:720px;margin:0 auto 14px;text-align:center;line-height:1.7">Warung Cemilan Key menyediakan aneka makanan dan minuman untuk teman ngemil dan nongkrong santai. Ada steak ayam, sushi, seblak, dan mie goreng untuk yang lapar, serta kentang goreng dan salad buah untuk cemilan. Buat yang haus, tersedia es teh. Menu kami mulai dari Rp 5.000.</p>
+<p style="max-width:720px;margin:0 auto;text-align:center;line-height:1.7">Mampir langsung ke warung kami di Karawang (buka pukul 10.00 - 22.00) atau pesan lewat website ini. Kami juga melayani antar khusus wilayah Karawang dengan ongkir flat Rp 5.000. Butuh pesanan dalam jumlah banyak untuk acara? Kami juga melayani catering.</p>
+</div>
+
 <div class="wrap sec" id="catering"><div class="banner"><div><h2>Terima pesanan & catering</h2><p>Mau pesan dalam jumlah banyak? Langsung chat kami.</p></div>
-<a class="btn y" id="waBan" href="https://wa.me/6281234567890" target="_blank" rel="noopener">Chat via WhatsApp</a></div></div>
+<a class="btn y" id="waBan" href="https://wa.me/62881024851406" target="_blank" rel="noopener">Chat via WhatsApp</a></div></div>
 </div>
 
 <div id="admin" hidden><div class="wrap sec"><h2 class="t" style="text-align:left">Dashboard Owner</h2>
@@ -46,14 +48,24 @@
 <footer><div class="wrap foot"><div><b>Warung Cemilan Key</b><br>Cemilan Kekinian & Lezat</div><div>Pesan & catering: lewat tombol WhatsApp</div></div></footer>
 
 <dialog id="dlg"><h2 style="margin-top:0;font-family:Fredoka">Pesananmu</h2><div id="items"></div>
+<div class="tot"><span>Subtotal</span><span id="subTot">Rp 0</span></div>
+<div class="tot" id="ongkirRow" hidden><span>Ongkir (Karawang)</span><span id="ongkirTxt">Rp 0</span></div>
 <div class="tot"><span>Total</span><span id="tot">Rp 0</span></div>
-<form onsubmit="bayar(event)"><label>Nama</label><input id="nama" required>
-<label>Metode bayar</label><select id="metode" onchange="hitung()"><option>QRIS</option><option>E-wallet</option><option>Transfer bank / VA</option><option>Tunai</option></select>
+<form onsubmit="bayar(event)"><label>Nama</label><input id="nama" required maxlength="50">
+<label>Cara terima pesanan</label><select id="layanan" onchange="upd()"><option value="Ambil">Ambil di warung (gratis)</option><option value="Antar">Antar - Karawang (+Rp 5.000)</option><option disabled>Antar ke luar Karawang (belum tersedia)</option></select>
+<p class="note">Layanan antar hanya untuk wilayah Karawang, ongkir flat Rp 5.000.</p>
+<div id="antarBox" hidden>
+<label>No. WhatsApp / HP</label><input id="hp" type="tel" inputmode="tel" maxlength="20" placeholder="Contoh: 0812xxxxxxx">
+<label>Alamat lengkap (Karawang)</label><textarea id="alamat" rows="3" maxlength="200" placeholder="Jalan, RT/RW, desa/kelurahan, kecamatan, patokan" style="width:100%;font:inherit;padding:9px 12px;border:2px solid #000;border-radius:12px;resize:vertical"></textarea>
+<label>Catatan (opsional)</label><input id="catatan" maxlength="150" placeholder="Contoh: pedas sedikit, pagar hijau">
+</div>
+<label>Metode bayar</label><select id="metode" onchange="hitung()"><option value="QRIS">QRIS</option><option value="Cash">Cash</option></select>
 <div id="tunai" hidden><label>Uang yang diberikan (Rp)</label><input id="uang" type="number" min="0" oninput="hitung()"><p class="note" id="kembali"></p></div>
-<p class="note">Pembayaran non-tunai masih simulasi.</p>
+<p class="note" id="infoBayar"></p>
 <button class="btn p" style="margin-top:12px;width:100%">Bayar sekarang</button></form>
 <button class="btn" style="margin-top:8px;width:100%" onclick="dlg.close()">Tutup</button></dialog>
 <dialog id="ok"><h2 style="margin-top:0;font-family:Fredoka">Pesanan berhasil</h2><p id="okmsg"></p>
+<div id="qrisBox" hidden style="text-align:center"><img id="qrisImg" alt="QRIS Warung Cemilan Key" style="display:block;margin:0 auto 8px;width:100%;max-width:340px;border:2.5px solid #000;border-radius:14px"><p class="note">Scan QRIS, bayar tepat <b id="qrisTotal"></b>, lalu kirim bukti bayar lewat WhatsApp.</p></div>
 <a id="wa" class="btn p" style="display:block" target="_blank">Kirim pesanan ke WhatsApp</a>
 <button class="btn" style="margin-top:8px;width:100%" onclick="ok.close()">Selesai</button></dialog>
 <script src="script.js"></script></body></html>
