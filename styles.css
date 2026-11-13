@@ -69,6 +69,9 @@ input,select{width:100%;padding:9px;border:2px solid #000;border-radius:10px;fon
 .st{background:var(--kuning);border:1.5px solid #000;border-radius:999px;padding:1px 10px;font-size:.75rem;font-weight:600}
 @media(max-width:760px){nav{display:none}.hero,.menu,.two,.feat{grid-template-columns:1fr}
 .cats{flex-direction:row;overflow-x:auto;padding-bottom:6px}.cat{white-space:nowrap}.blob{font-size:6rem}}
+.wlink{cursor:pointer;position:relative;z-index:2}
+.visual{position:relative;z-index:1}
+.deco,.heart,.chip{pointer-events:none}
 /* ===== Hero gaya referensi ===== */
 .hero{padding:34px 0 50px}
 .tag{background:#FFEBD2;border:0;color:var(--marun)}
