@@ -3,7 +3,7 @@ const WA = "6281234567890"; // nomor WhatsApp warung, format 62 tanpa +
 const HERO_FOTO = "img/hero.jpg";
 // foto: isi path foto di folder img, contoh "img/steak-ayam.jpg". Kosong = pakai emoji.
 const MENU = [
-  { id: 1, nama: "Steak Ayam", harga: 25000, kat: "Steak", e: "🍗", foto: "" },
+  { id: 1, nama: "Steak Ayam", harga: 25000, kat: "Steak", e: "🍗", foto: "img/steakayam.img" },
   { id: 2, nama: "Steak Ayam Bakar", harga: 27000, kat: "Steak", e: "🔥", foto: "" },
   { id: 3, nama: "Sushi Goreng", harga: 20000, kat: "Sushi", e: "🍣", foto: "" },
   { id: 4, nama: "Sushi Mentai", harga: 22000, kat: "Sushi", e: "🍱", foto: "" },
