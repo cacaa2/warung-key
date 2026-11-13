@@ -100,3 +100,10 @@ input,select{width:100%;padding:9px;border:2px solid #000;border-radius:10px;fon
 .chip .ic{width:30px;height:30px;font-size:.9rem}
 .chip b{font-size:.85rem}
 .chip small{font-size:.65rem}
+html,body{display:block;overflow-x:hidden}
+#toko,#admin{display:block!important;width:100%}
+#toko>.wrap{display:block;width:100%;max-width:1100px;margin:0 auto}
+.menu{display:grid;grid-template-columns:170px minmax(0,1fr)}
+.grid{min-width:0}
+.hero{display:grid}
+@media(max-width:760px){.menu,.hero{grid-template-columns:1fr}}
