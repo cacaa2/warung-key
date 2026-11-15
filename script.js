@@ -15,13 +15,12 @@ const MENU = [
   { id: 6, nama: "Mie Goreng", harga: 15000, kat: "Cemilan", e: "🍜", foto: "img/miegoreng.jpg" },
   { id: 7, nama: "Salad Buah", harga: 13000, kat: "Cemilan", e: "🥗", foto: "img/saladbuah.jpg" },
   { id: 8, nama: "Es Teh", harga: 5000, kat: "Minuman", e: "🧋", foto: "img/esteh.jpg" }
-  { id: 9, nama: "Ricebowl", harga:15000, kat: "Makanan", e: "🧋", foto: "img/ricebowl.jpg" }
 ];
 
 // ===== FUNGSI BANTU =====
 const rp = n => "Rp " + Number(n).toLocaleString("id-ID");
 const load = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) || d } catch { return d } };
-const save = (k, v) => localStorage.setItem(k, JSON.stringify(v));
+const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)) } catch {} };
 const find = id => MENU.find(m => m.id == id);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
@@ -30,10 +29,10 @@ let cart = load("cart", {}), kat = "Semua";
 waTop.href = waBan.href = "https://wa.me/" + WA;
 const elMin = document.getElementById("minHarga");
 if (elMin) elMin.textContent = rp(Math.min(...MENU.map(m => m.harga)));
-if (HERO_FOTO) blob.innerHTML = `<img src="${HERO_FOTO}" alt="Warung Cemilan Key">`;
+if (HERO_FOTO) blob.innerHTML = `<img src="${HERO_FOTO}" alt="Warung Cemilan Key" onerror="this.parentNode.textContent='🍣'">`;
 function renderMenu() {
   cats.innerHTML = ["Semua", ...new Set(MENU.map(m => m.kat))].map(k => `<button class="cat ${k == kat ? "on" : ""}" onclick="kat='${k}';renderMenu()">${k}</button>`).join("");
-  grid.innerHTML = MENU.filter(m => kat == "Semua" || m.kat == kat).map(m => `<article class="card"><span class="badge">${m.kat}</span><div class="pic">${m.foto ? `<img src="${m.foto}" alt="${m.nama}">` : m.e}</div><h3>${m.nama}</h3><p class="hrg">${rp(m.harga)}</p><button class="btn y" onclick="add(${m.id})">Tambah</button></article>`).join("");
+  grid.innerHTML = MENU.filter(m => kat == "Semua" || m.kat == kat).map(m => `<article class="card"><span class="badge">${m.kat}</span><div class="pic">${m.foto ? `<img src="${m.foto}" alt="${m.nama}" onerror="this.parentNode.textContent='${m.e}'">` : m.e}</div><h3>${m.nama}</h3><p class="hrg">${rp(m.harga)}</p><button class="btn y" onclick="add(${m.id})">Tambah</button></article>`).join("");
 }
 const add = id => { cart[id] = (cart[id] || 0) + 1; upd() };
 const chg = (id, d) => { cart[id] += d; if (cart[id] <= 0) delete cart[id]; upd() };
@@ -47,7 +46,7 @@ function upd() {
   cnt.textContent = Object.values(cart).reduce((a, b) => a + b, 0);
   items.innerHTML = Object.entries(cart).map(([id, q]) => `<div class="row"><span>${find(id).nama}<br><small>${rp(find(id).harga)}</small></span><span class="qty"><button onclick="chg(${id},-1)">-</button>${q}<button onclick="chg(${id},1)">+</button></span></div>`).join("") || "<p>Keranjang masih kosong. Pilih menu dulu.</p>";
   subTot.textContent = rp(subtotal());
-  ongkirRow.hidden = !antar();
+  ongkirRow.hidden = !(antar() && subtotal());
   ongkirTxt.textContent = rp(ONGKIR);
   tot.textContent = rp(total());
   hitung();
@@ -56,13 +55,15 @@ function hitung() {
   const cash = metode.value === "Cash";
   const kirim = antar();
   tunai.hidden = !cash;
+  const qf = document.getElementById("qrisForm");
+  if (qf) { qf.hidden = cash; if (!cash) { document.getElementById("qrisPrev").src = QRIS_FOTO; document.getElementById("qrisPrevTotal").textContent = rp(total()); } }
   antarBox.hidden = !kirim;
   hp.required = kirim;
   alamat.required = kirim;
   const info = document.getElementById("infoBayar");
   if (info) info.textContent = cash
     ? (kirim ? "Bayar tunai ke kurir saat pesanan sampai." : "Bayar langsung di warung saat pesanan diambil.")
-    : "Setelah klik \"Bayar sekarang\", kode QRIS akan muncul. Pesanan diproses setelah pembayaran dikonfirmasi pemilik.";
+    : "Scan QRIS di atas, lalu klik \"Bayar sekarang\" dan kirim bukti bayar lewat WhatsApp. Pesanan diproses setelah pembayaran dikonfirmasi pemilik.";
   const k = Number(uang.value || 0) - total();
   kembali.textContent = cash && uang.value ? (k >= 0 ? "Kembalian: " + rp(k) : "Uang kurang: " + rp(-k)) : "";
 }
@@ -136,7 +137,7 @@ function bayar(e) {
       document.getElementById("qrisTotal").textContent = rp(o.total);
     }
   }
-  cart = {}; uang.value = ""; nama.value = ""; hp.value = ""; alamat.value = ""; catatan.value = "";
+  cart = {}; uang.value = ""; nama.value = ""; hp.value = ""; alamat.value = ""; catatan.value = ""; layanan.value = "Ambil";
   upd(); dlg.close(); ok.showModal();
 }
 

@@ -91,7 +91,8 @@ input,select{width:100%;padding:9px;border:2px solid #000;border-radius:10px;fon
 .deco{position:absolute;font-size:1.6rem}.d1{left:12%;top:10%}.d2{right:2%;top:46%}
 @media(max-width:760px){.c1{left:0}.c2{right:0}}
 /* ===== perbaikan ===== */
-html,body{display:block;overflow-x:hidden}
+html,body{display:block}
+body{overflow-x:clip}
 #toko,#admin{display:block;width:100%}
 .c1,.c2{top:auto;height:auto}
 .c1{left:-4%;bottom:14%}.c2{right:-2%;bottom:-2%}
