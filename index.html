@@ -14,7 +14,6 @@
 <p>Pilih menu favoritmu, bayar cash atau QRIS, langsung proses!</p>
 <div class="cta"><a class="btn p" href="#menu">Pesan Sekarang →</a><a class="wlink" id="waTop" href="https://wa.me/62881024851406" target="_blank" rel="noopener"><span class="play"><img src="img/whatsapp.png" alt=""></span>Chat WhatsApp</a></div>
 <div class="proof"><span class="ok">✓</span><div><b>Metode pembayaran</b><br><small>Cash / QRIS</small></div></div></div>
-
 <div class="visual"><div class="blob" id="blob">🍣</div>
 <span class="deco d1">🌶️</span><span class="deco d2">🍃</span><span class="heart">❤</span>
 <div class="chip c1"><span class="ic">🛵</span><div><small>Pesanan</small><b>Langsung diproses</b></div></div>
@@ -61,12 +60,13 @@
 <label>Catatan (opsional)</label><input id="catatan" maxlength="150" placeholder="Contoh: pedas sedikit, pagar hijau">
 </div>
 <label>Metode bayar</label><select id="metode" onchange="hitung()"><option value="QRIS">QRIS</option><option value="Cash">Cash</option></select>
+<div id="qrisForm" hidden style="text-align:center;margin-top:10px"><img id="qrisPrev" alt="QRIS Warung Cemilan Key" style="display:block;margin:0 auto 6px;width:100%;max-width:260px;border:2.5px solid #000;border-radius:14px"><p class="note">Scan QRIS ini, bayar tepat <b id="qrisPrevTotal"></b>, lalu klik "Bayar sekarang".</p></div>
 <div id="tunai" hidden><label>Uang yang diberikan (Rp)</label><input id="uang" type="number" min="0" oninput="hitung()"><p class="note" id="kembali"></p></div>
 <p class="note" id="infoBayar"></p>
 <button class="btn p" style="margin-top:12px;width:100%">Bayar sekarang</button></form>
 <button class="btn" style="margin-top:8px;width:100%" onclick="dlg.close()">Tutup</button></dialog>
 <dialog id="ok"><h2 style="margin-top:0;font-family:Fredoka">Pesanan berhasil</h2><p id="okmsg"></p>
 <div id="qrisBox" hidden style="text-align:center"><img id="qrisImg" alt="QRIS Warung Cemilan Key" style="display:block;margin:0 auto 8px;width:100%;max-width:340px;border:2.5px solid #000;border-radius:14px"><p class="note">Scan QRIS, bayar tepat <b id="qrisTotal"></b>, lalu kirim bukti bayar lewat WhatsApp.</p></div>
-<a id="wa" class="btn p" style="display:block" target="_blank">Kirim pesanan ke WhatsApp</a>
+<a id="wa" class="btn p" style="display:block" target="_blank" rel="noopener">Kirim pesanan ke WhatsApp</a>
 <button class="btn" style="margin-top:8px;width:100%" onclick="ok.close()">Selesai</button></dialog>
 <script src="script.js"></script></body></html>
