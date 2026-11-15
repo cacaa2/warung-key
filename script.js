@@ -15,7 +15,11 @@ const MENU = [
   { id: 5, nama: "Kentang Goreng", harga: 12000, kat: "Cemilan", e: "🍟", foto: "img/kentanggoreng.jpg" },
   { id: 6, nama: "Mie Goreng", harga: 15000, kat: "Cemilan", e: "🍜", foto: "img/miegoreng.jpg" },
   { id: 7, nama: "Salad Buah", harga: 13000, kat: "Cemilan", e: "🥗", foto: "img/saladbuah.jpg" },
-  { id: 8, nama: "Es Teh", harga: 5000, kat: "Minuman", e: "🧋", foto: "img/esteh.jpg" }
+  { id: 8, nama: "Es Teh", harga: 5000, kat: "Minuman", e: "🧋", foto: "img/esteh.jpg" },
+  { id: 9, nama: "Es Jeruk", harga: 6000, kat: "Minuman", e: "🍊", foto: "img/esjeruk.jpg" },
+  { id: 10, nama: "Ricebowl", harga: 15000, kat: "Cemilan", e: "🍜", foto: "img/ricebowl.jpg" },
+  { id: 11, nama: "Cireng", harga: 10000, kat: "Cemilan", e: "🥟", foto: "img/ricebowl.jpg" },
+  { id: 12, nama: "Es Teler", harga: 20000, kat: "Minuman", e: "🧋", foto: "img/esteler.jpg" },
 ];
 
 // ===== FUNGSI BANTU =====
