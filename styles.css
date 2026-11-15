@@ -100,3 +100,57 @@ body{overflow-x:clip}
 .play img{width:100%;height:100%;object-fit:cover;transform:scale(1.4);display:block}
 .wlink{text-decoration:none;cursor:pointer;position:relative;z-index:2}
 .deco,.heart,.chip{pointer-events:none}
+
+/* ===== poles tampilan ===== */
+@keyframes up{from{opacity:0;transform:translateY(16px)}}
+@keyframes float{50%{transform:translateY(-10px)}}
+@keyframes pop{from{opacity:0;transform:scale(.95)}}
+body{background:radial-gradient(circle at 92% 4%,#FFE6B8 0,transparent 28%),radial-gradient(circle at 4% 42%,#FFD9D4 0,transparent 24%),#FFF8F0;background-attachment:fixed}
+header{box-shadow:0 8px 22px #b0183d14}
+.btn{transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 5px 0 #000}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 #000}
+.hero>*{animation:up .7s both}.hero>.visual{animation-delay:.15s}
+.hero h1{letter-spacing:-.01em}
+.visual{isolation:isolate}
+.visual::before{content:"";position:absolute;z-index:-1;left:50%;top:50%;width:min(450px,92vw);aspect-ratio:1;border:2px dashed var(--pink);border-radius:50%;opacity:.45;transform:translate(-50%,-50%)}
+.blob{animation:float 6s ease-in-out infinite;box-shadow:10px 12px 0 #b0183d22}
+.chip{animation:float 5s ease-in-out infinite}.c2{animation-delay:-2.2s}
+.heart{animation:float 4s ease-in-out infinite}
+#menu h2.t::after,#keunggulan h2.t::after{content:"";display:block;width:70px;height:7px;margin:10px auto 0;border-radius:9px;background:var(--kuning);border:2px solid #000}
+.cat{transition:background .15s,transform .15s}.cat:hover{background:var(--kuning);transform:translateX(4px)}.cat.on:hover{background:var(--marun)}
+.card{animation:up .45s both;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-6px);box-shadow:6px 10px 0 #000}
+.pic{overflow:hidden}.pic img{transition:transform .4s}.card:hover .pic img{transform:scale(1.07)}
+.hrg{font:600 1.15rem Fredoka}
+#keunggulan p{background:#fff;border:2px dashed var(--pink);border-radius:18px;padding:18px 22px}
+.banner{position:relative;overflow:hidden}
+.banner::after{content:"";position:absolute;right:-50px;top:-50px;width:230px;height:230px;border-radius:30px;transform:rotate(45deg);background:repeating-conic-gradient(#ffffff18 0 25%,transparent 0 50%) 0 0/36px 36px;pointer-events:none}
+.banner>*{position:relative;z-index:1}
+footer{background:var(--marun);color:var(--krem);border-top:0;padding:26px 0}
+footer b{color:var(--kuning);font:600 1.15rem Fredoka}
+dialog[open]{animation:pop .2s;box-shadow:8px 8px 0 #000}
+@media(max-width:760px){.logo{font-size:1.05rem}.logo i{padding:1px 5px}.bar{padding:8px 12px;gap:8px}.act .btn{padding:7px 12px;font-size:.8rem}.hero{padding-top:20px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+#menu{padding-top:36px!important}
+
+/* ===== strip kategori & kartu info (gaya referensi) ===== */
+.catbar{background:#fff;border:2px solid #000;border-radius:20px;box-shadow:4px 4px 0 #000;padding:16px 12px 0;margin-bottom:24px;overflow-x:auto}
+.cats{display:flex;flex-direction:row;justify-content:flex-start;gap:26px;width:max-content;margin:0 auto;padding-bottom:0}
+.cat{background:none;border:0;border-bottom:4px solid transparent;border-radius:0;padding:2px 10px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;font:600 .78rem Poppins;text-transform:uppercase;color:var(--ink);white-space:nowrap}
+.cat:hover,.cat.on:hover{background:none;transform:translateY(-3px)}
+.cat.on{background:none;color:var(--marun);border-bottom-color:var(--marun)}
+.ci{width:64px;height:64px;border-radius:50%;background:var(--krem);border:2px solid #000;overflow:hidden;display:grid;place-items:center;font-size:2rem}
+.ci img{width:100%;height:100%;object-fit:cover}
+.promo{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.pc{grid-column:span 2;display:flex;align-items:center;justify-content:space-between;gap:14px;background:#fff;border:2px solid #000;border-radius:22px;padding:20px 22px;box-shadow:4px 4px 0 #000;min-height:150px;transition:transform .2s}
+.pc:hover{transform:translateY(-4px)}
+.pc.w3{grid-column:span 3}
+.pc.red{background:var(--pink);color:#fff}
+.pc h3{margin:0 0 6px;font-size:1.1rem;text-transform:uppercase}
+.pc small{display:block;font-size:.85rem;margin-bottom:6px}
+.pp{font:700 1.3rem Fredoka;color:var(--pink);margin-bottom:6px}.pc.red .pp{color:var(--kuning)}
+.pc .btn{padding:6px 16px;font-size:.8rem;margin-top:4px}
+.pcirc{flex:none;width:100px;height:100px;border-radius:50%;background:var(--kuning);border:2px solid #000;overflow:hidden;display:grid;place-items:center;font-size:3rem}
+.pcirc img{width:100%;height:100%;object-fit:cover}
+@media(max-width:760px){.pc,.pc.w3{grid-column:1/-1}.pcirc{width:84px;height:84px;font-size:2.4rem}.cats{gap:14px}}
