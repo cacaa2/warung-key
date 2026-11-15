@@ -4,7 +4,7 @@ const HERO_FOTO = "img/hero.jpg";
 const QRIS_FOTO = "img/qris.png"; // gambar QRIS warung (ada di folder img)
 // Alamat Google Apps Script (berakhiran /exec). Kosongkan "" kalau belum dipasang.
 const SHEET_URL = "";
-const QRIS_AKTIF = false; // ganti true kalau QRIS sudah siap dipakai
+const QRIS_AKTIF = true; // ganti true kalau QRIS sudah siap dipakai
 const ONGKIR = 5000; // tarif antar flat, khusus wilayah Karawang
 // foto: isi path foto di folder img, contoh "img/steak-ayam.jpg". Kosong = pakai emoji.
 const MENU = [
