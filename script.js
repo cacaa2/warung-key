@@ -4,6 +4,7 @@ const HERO_FOTO = "img/hero.jpg";
 const QRIS_FOTO = "img/qris.png"; // gambar QRIS warung (ada di folder img)
 // Alamat Google Apps Script (berakhiran /exec). Kosongkan "" kalau belum dipasang.
 const SHEET_URL = "";
+const QRIS_AKTIF = false; // ganti true kalau QRIS sudah siap dipakai
 const ONGKIR = 5000; // tarif antar flat, khusus wilayah Karawang
 // foto: isi path foto di folder img, contoh "img/steak-ayam.jpg". Kosong = pakai emoji.
 const MENU = [
@@ -14,7 +15,11 @@ const MENU = [
   { id: 5, nama: "Kentang Goreng", harga: 12000, kat: "Cemilan", e: "🍟", foto: "img/kentanggoreng.jpg" },
   { id: 6, nama: "Mie Goreng", harga: 15000, kat: "Cemilan", e: "🍜", foto: "img/miegoreng.jpg" },
   { id: 7, nama: "Salad Buah", harga: 13000, kat: "Cemilan", e: "🥗", foto: "img/saladbuah.jpg" },
-  { id: 8, nama: "Es Teh", harga: 5000, kat: "Minuman", e: "🧋", foto: "img/esteh.jpg" }
+  { id: 8, nama: "Es Teh", harga: 5000, kat: "Minuman", e: "🧋", foto: "img/esteh.jpg" },
+  { id: 9, nama: "Es Jeruk", harga: 6000, kat: "Minuman", e: "🍊", foto: "img/esjeruk.jpg" },
+  { id: 10, nama: "Ricebowl", harga: 15000, kat: "Cemilan", e: "🍜", foto: "img/ricebowl.jpg" },
+  { id: 11, nama: "Cireng", harga: 10000, kat: "Cemilan", e: "🥟", foto: "img/ricebowl.jpg" },
+  { id: 12, nama: "Es Teler", harga: 20000, kat: "Minuman", e: "🧋", foto: "img/esteler.jpg" },
 ];
 
 // ===== FUNGSI BANTU =====
@@ -27,11 +32,32 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;"
 // ===== HALAMAN TOKO =====
 let cart = load("cart", {}), kat = "Semua";
 waTop.href = waBan.href = "https://wa.me/" + WA;
+if (!QRIS_AKTIF) {
+  metode.querySelector('option[value="QRIS"]').remove(); metode.value = "Cash";
+  heroP.textContent = "Pilih menu favoritmu, bayar cash, langsung proses!";
+  proofSm.textContent = "Cash";
+}
 const elMin = document.getElementById("minHarga");
 if (elMin) elMin.textContent = rp(Math.min(...MENU.map(m => m.harga)));
 if (HERO_FOTO) blob.innerHTML = `<img src="${HERO_FOTO}" alt="Warung Cemilan Key" onerror="this.parentNode.textContent='🍣'">`;
+const KAT_E = { Semua: "🍽️", Steak: "🍗", Sushi: "🍣", Cemilan: "🍟", Minuman: "🧋" };
+function renderPromo() {
+  const a = MENU[0], z = MENU.reduce((x, y) => y.harga < x.harga ? y : x);
+  const P = [
+    { c: "", t: "Pilihan Key", s: a.nama, p: rp(a.harga), foto: a.foto, e: a.e },
+    { c: "red", t: "Mulai dari", s: z.nama, p: rp(z.harga), foto: z.foto, e: z.e },
+    { c: "", t: "Antar Karawang", s: "Ongkir flat " + rp(ONGKIR), e: "🛵" },
+    { c: "w3", t: "Jam buka", s: "10.00 - 22.00", e: "🕙" },
+    { c: "w3", t: "Pembayaran", s: QRIS_AKTIF ? "Cash & QRIS" : "Cash", e: "💵", btn: 1 }
+  ];
+  promo.innerHTML = P.map(x => `<div class="pc ${x.c}"><div><h3>${x.t}</h3><small>${x.s}</small>${x.p ? `<div class="pp">${x.p}</div>` : ""}${x.btn ? `<a class="btn p" href="#menu">Pesan sekarang</a>` : ""}</div><div class="pcirc">${x.foto ? `<img src="${x.foto}" alt="${x.s}" onerror="this.parentNode.textContent='${x.e}'">` : x.e}</div></div>`).join("");
+}
 function renderMenu() {
-  cats.innerHTML = ["Semua", ...new Set(MENU.map(m => m.kat))].map(k => `<button class="cat ${k == kat ? "on" : ""}" onclick="kat='${k}';renderMenu()">${k}</button>`).join("");
+  cats.innerHTML = ["Semua", ...new Set(MENU.map(m => m.kat))].map(k => {
+    const e = KAT_E[k] || "🍴", f = (MENU.find(m => m.kat == k && m.foto) || {}).foto;
+    const ic = k != "Semua" && f ? `<img src="${f}" alt="${k}" onerror="this.parentNode.textContent='${e}'">` : e;
+    return `<button class="cat ${k == kat ? "on" : ""}" onclick="kat='${k}';renderMenu()"><span class="ci">${ic}</span>${k}</button>`;
+  }).join("");
   grid.innerHTML = MENU.filter(m => kat == "Semua" || m.kat == kat).map(m => `<article class="card"><span class="badge">${m.kat}</span><div class="pic">${m.foto ? `<img src="${m.foto}" alt="${m.nama}" onerror="this.parentNode.textContent='${m.e}'">` : m.e}</div><h3>${m.nama}</h3><p class="hrg">${rp(m.harga)}</p><button class="btn y" onclick="add(${m.id})">Tambah</button></article>`).join("");
 }
 const add = id => { cart[id] = (cart[id] || 0) + 1; upd() };
@@ -173,4 +199,4 @@ function seed() {
 }
 function hapus() { if (confirm("Hapus semua pesanan?")) { save("orders", []); renderAdmin(); } }
 
-renderMenu(); upd();
+renderMenu(); renderPromo(); upd();
