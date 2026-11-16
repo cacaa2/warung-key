@@ -40,6 +40,7 @@ if (!QRIS_AKTIF) {
 const elMin = document.getElementById("minHarga");
 if (elMin) elMin.textContent = rp(Math.min(...MENU.map(m => m.harga)));
 if (HERO_FOTO) blob.innerHTML = `<img src="${HERO_FOTO}" alt="Warung Cemilan Key" onerror="this.parentNode.textContent='🍣'">`;
+const KAT_FOTO = { Semua: "img/kat-semua.jpg", Steak: "img/kat-logosteak.jpg", Cemilan: "img/kat-logocemilan.jpg", Sushi: "img/kat-logosushi.jpg", Minuman: "img/kat-logominuman.jpg" };
 const KAT_E = { Semua: "🍽️", Steak: "🍗", Sushi: "🍣", Cemilan: "🍟", Minuman: "🧋" };
 function renderPromo() {
   const a = MENU[0], z = MENU.reduce((x, y) => y.harga < x.harga ? y : x);
@@ -54,8 +55,8 @@ function renderPromo() {
 }
 function renderMenu() {
   cats.innerHTML = ["Semua", ...new Set(MENU.map(m => m.kat))].map(k => {
-    const e = KAT_E[k] || "🍴", f = (MENU.find(m => m.kat == k && m.foto) || {}).foto;
-    const ic = k != "Semua" && f ? `<img src="${f}" alt="${k}" onerror="this.parentNode.textContent='${e}'">` : e;
+  const e = KAT_E[k] || "🍴", f = KAT_FOTO[k] || (k != "Semua" && (MENU.find(m => m.kat == k && m.foto) || {}).foto);
+    const ic = f ? `<img src="${f}" alt="${k}" onerror="this.parentNode.textContent='${e}'">` : e;
     return `<button class="cat ${k == kat ? "on" : ""}" onclick="kat='${k}';renderMenu()"><span class="ci">${ic}</span>${k}</button>`;
   }).join("");
   grid.innerHTML = MENU.filter(m => kat == "Semua" || m.kat == kat).map(m => `<article class="card"><span class="badge">${m.kat}</span><div class="pic">${m.foto ? `<img src="${m.foto}" alt="${m.nama}" onerror="this.parentNode.textContent='${m.e}'">` : m.e}</div><h3>${m.nama}</h3><p class="hrg">${rp(m.harga)}</p><button class="btn y" onclick="add(${m.id})">Tambah</button></article>`).join("");
