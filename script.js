@@ -201,3 +201,64 @@ function seed() {
 function hapus() { if (confirm("Hapus semua pesanan?")) { save("orders", []); renderAdmin(); } }
 
 renderMenu(); renderPromo(); upd();
+
+// ===== halaman Catering + pindah halaman (Home, Menu, Tentang, Catering) =====
+// Foto halaman Catering: ganti path-nya dengan foto sendiri di folder img. Kosong/gagal dimuat = pakai emoji.
+const CATERING_FOTO = [
+  { foto: "img/catering1.jpg", cap: "Aneka makanan", e: "🍱" },
+  { foto: "img/catering2.jpg", cap: "Cemilan", e: "🍟" },
+  { foto: "img/catering3.jpg", cap: "Antar pesanan", e: "🛵" },
+  { foto: "img/catering4.jpg", cap: "Untuk acaramu", e: "🎉" }
+];
+(function () {
+  document.getElementById("toko").insertAdjacentHTML("beforeend", `
+<div class="wrap sec" id="cater">
+  <div class="eyebrow">Catering</div><h2 class="t">Pesan Banyak untuk Acaramu</h2>
+  <p class="cintro">Butuh pesanan dalam jumlah banyak untuk acara? Isi form di bawah lalu kirim lewat WhatsApp. Pesanan bisa diambil di warung, atau diantar khusus wilayah Karawang.</p>
+  <div class="cgal">${CATERING_FOTO.map(x => `<div class="ctile">${x.foto ? `<img src="${x.foto}" alt="${x.cap}" onerror="this.remove()">` : ""}<em>${x.e}</em><span>${x.cap}</span></div>`).join("")}</div>
+  <form class="cform" id="ctForm"><h3>Ajukan Pesanan Catering</h3>
+    <div class="cgrid">
+      <div><label>Nama</label><input id="ctNama" required maxlength="50"></div>
+      <div><label>Jumlah porsi</label><input id="ctPorsi" type="number" min="1" required></div>
+      <div class="full"><label>Tanggal &amp; jam acara</label><input id="ctTgl" type="datetime-local" required></div>
+      <div class="full"><label>Menu / kebutuhan</label><textarea id="ctMenu" class="ta" rows="3" maxlength="300" required placeholder="Contoh: steak ayam 20 porsi, es teh 20 gelas"></textarea></div>
+    </div>
+    <label>Cara terima pesanan</label>
+    <div class="opts">
+      <label class="opt on"><input type="radio" name="ctTerima" value="Ambil di warung" checked>🏪 Ambil di warung</label>
+      <label class="opt"><input type="radio" name="ctTerima" value="Antar ke lokasi (Karawang)">🛵 Antar ke lokasi<br><small>khusus Karawang</small></label>
+    </div>
+    <div id="ctAntar" hidden><label>Alamat lokasi acara (Karawang)</label><textarea id="ctAlamat" class="ta" rows="3" maxlength="200" placeholder="Jalan, RT/RW, desa/kelurahan, kecamatan, patokan"></textarea></div>
+    <p class="note">Harga dan ongkir dikonfirmasi lewat WhatsApp.</p>
+    <button class="btn p" style="width:100%;margin-top:10px">Kirim ke WhatsApp</button>
+  </form>
+</div>`);
+  const f = document.getElementById("ctForm"), box = document.getElementById("ctAntar"), al = document.getElementById("ctAlamat");
+  const terima = () => f.querySelector('input[name="ctTerima"]:checked').value;
+  f.addEventListener("change", () => {
+    const antar = terima().startsWith("Antar");
+    box.hidden = !antar; al.required = antar;
+    f.querySelectorAll(".opt").forEach(o => o.classList.toggle("on", o.querySelector("input").checked));
+  });
+  f.addEventListener("submit", e => {
+    e.preventDefault();
+    const v = id => document.getElementById(id).value.trim(), antar = terima().startsWith("Antar");
+    if (antar && v("ctAlamat").length < 10) return alert("Alamat lokasi acara harus diisi (jalan, RT/RW, desa/kelurahan, kecamatan).");
+    const d = new Date(v("ctTgl")), tgl = isNaN(d) ? v("ctTgl") : d.toLocaleString("id-ID", { dateStyle: "full", timeStyle: "short" });
+    const t = "Halo, saya " + v("ctNama") + ". Saya mau pesan catering.\nJumlah porsi: " + v("ctPorsi") + "\nTanggal & jam acara: " + tgl + "\nMenu/kebutuhan: " + v("ctMenu") + "\nCara terima: " + terima() + (antar ? "\nAlamat: " + v("ctAlamat") : "");
+    window.open("https://wa.me/" + WA + "?text=" + encodeURIComponent(t), "_blank", "noopener");
+  });
+
+  // pindah halaman lewat alamat #hash
+  const EL = { home: "home", info: "menu", menu: "menu", keunggulan: "tentang", catering: "tentang", cater: "catering" };
+  const HASH = { home: "home", info: "menu", menu: "menu", keunggulan: "tentang", tentang: "tentang", catering: "catering" };
+  Object.keys(EL).forEach(id => { const x = document.getElementById(id); if (x) x.dataset.page = EL[id]; });
+  const sp = document.querySelector("#toko > .strip"); if (sp) sp.dataset.page = "home";
+  function route() {
+    const p = HASH[location.hash.slice(1)] || "home";
+    document.querySelectorAll("[data-page]").forEach(x => { x.hidden = x.dataset.page !== p; });
+    document.querySelectorAll("header nav a").forEach(a => a.classList.toggle("on", HASH[a.getAttribute("href").slice(1)] === p));
+    scrollTo(0, 0);
+  }
+  addEventListener("hashchange", route); route();
+})();
