@@ -156,3 +156,25 @@ dialog[open]{animation:pop .2s;box-shadow:8px 8px 0 #000}
 @media(max-width:760px){.pc,.pc.w3{grid-column:1/-1}.pcirc{width:84px;height:84px;font-size:2.4rem}.cats{gap:14px}}
 .ci img{transform:scale(1.4)}
 .ci img[alt="Steak"]{transform:none}
+/* ===== layar loading ===== */
+#loader{position:fixed;inset:0;z-index:99;background:var(--kuning);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;transition:opacity .5s,visibility .5s;animation:hideLoader 0s 7s forwards}
+#loader.off{opacity:0;visibility:hidden}
+#loader b{font:700 1.6rem Fredoka,sans-serif;color:var(--marun)}
+.lg span{display:inline-block;font-size:3rem;margin:0 6px;animation:bounce .8s ease-in-out infinite}
+.lg span:nth-child(2){animation-delay:.15s}.lg span:nth-child(3){animation-delay:.3s}
+.lbar{width:200px;height:14px;border:3px solid #000;border-radius:99px;background:#fff;overflow:hidden}
+.lbar i{display:block;height:100%;background:var(--marun);border-radius:99px;animation:muat 1.3s ease-in-out infinite}
+@keyframes bounce{50%{transform:translateY(-20px)}}
+@keyframes muat{0%{width:0;margin-left:0}50%{width:70%;margin-left:15%}100%{width:0;margin-left:100%}}
+@keyframes hideLoader{to{opacity:0;visibility:hidden}}
+
+/* ===== halaman terpisah: Home, Menu, Tentang ===== */
+[data-page]{animation:up .5s both}
+nav a{padding:4px 2px;border-bottom:3px solid transparent;transition:color .15s,border-color .15s}
+nav a.on{color:var(--marun);border-bottom-color:var(--marun)}
+#home .hero{min-height:calc(100svh - 72px);padding:20px 0}
+#home .hero h1{font-size:clamp(2.6rem,6vw,4.4rem)}
+#home .hero p{font-size:1.1rem;max-width:480px}
+#home .blob{width:min(470px,84vw)}
+#home .visual::before{width:min(540px,94vw)}
+@media(max-width:760px){nav{display:flex;order:3;width:100%;justify-content:center;gap:18px}.bar{flex-wrap:wrap}#home .hero{min-height:auto}}
