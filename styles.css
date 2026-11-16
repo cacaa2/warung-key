@@ -195,3 +195,23 @@ nav a.on{color:var(--marun);border-bottom-color:var(--marun)}
 .opt:hover{transform:translateY(-2px)}.opt.on{background:var(--kuning);box-shadow:0 3px 0 #000}
 .opt input{display:none}.opt small{font-weight:400}
 @media(max-width:760px){.cgal{grid-template-columns:1fr 1fr}.cgrid{grid-template-columns:1fr}}
+
+/* ===== Home diperbesar ===== */
+#home{max-width:1360px;padding:0 clamp(18px,5vw,64px)}
+#home .hero{min-height:calc(100svh - 72px);gap:40px}
+#home .hero h1{font-size:clamp(3rem,6.4vw,5.8rem);line-height:1.02}
+#home .tag{font-size:.95rem;padding:6px 18px}
+#home .hero p{font-size:1.25rem;max-width:560px}
+#home .btn{font-size:1.1rem;padding:14px 30px}
+#home .play{width:56px;height:56px}
+#home .wlink{font-size:1.1rem}
+#home .proof{font-size:1.05rem}
+#home .blob{width:min(620px,88%);font-size:14rem}
+#home .visual::before{width:min(720px,100%)}
+#home .chip{padding:14px 22px}
+#home .chip b{font-size:1.15rem}
+#home .chip small{font-size:.85rem}
+#home .chip .ic{width:48px;height:48px;font-size:1.4rem}
+#home .heart{width:60px;height:60px;font-size:1.4rem}
+@media(max-width:1000px){#home .hero h1{font-size:clamp(2.8rem,8vw,4.6rem)}#home .blob{width:min(460px,88%);font-size:10rem}#home .visual::before{width:min(540px,100%)}}
+@media(max-width:760px){#home .hero{min-height:auto;gap:24px}#home .hero h1{font-size:clamp(2.6rem,13vw,3.8rem)}#home .hero p{font-size:1.05rem}#home .btn{font-size:1rem;padding:12px 24px}#home .blob{width:min(360px,86vw);font-size:8rem}#home .visual::before{width:min(420px,92vw)}#home .chip{padding:8px 12px}#home .chip b{font-size:.95rem}#home .chip small{font-size:.72rem}#home .chip .ic{width:34px;height:34px;font-size:1.1rem}#home .c1{left:0}#home .c2{right:0;bottom:-4%}#home .heart{width:46px;height:46px}}
