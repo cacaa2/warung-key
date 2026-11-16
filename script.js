@@ -204,6 +204,7 @@ renderMenu(); renderPromo(); upd();
 
 // ===== halaman Catering + pindah halaman (Home, Menu, Tentang, Catering) =====
 // Foto halaman Catering: ganti path-nya dengan foto sendiri di folder img. Kosong/gagal dimuat = pakai emoji.
+const CATERING_HERO = "img/catering-hero.jpg"; // foto besar di samping judul halaman Catering
 const CATERING_FOTO = [
   { foto: "img/catering1.jpg", cap: "Aneka makanan", e: "🍱" },
   { foto: "img/catering2.jpg", cap: "Cemilan", e: "🍟" },
@@ -213,9 +214,16 @@ const CATERING_FOTO = [
 (function () {
   document.getElementById("toko").insertAdjacentHTML("beforeend", `
 <div class="wrap sec" id="cater">
-  <div class="eyebrow">Catering</div><h2 class="t">Pesan Banyak untuk Acaramu</h2>
-  <p class="cintro">Butuh pesanan dalam jumlah banyak untuk acara? Isi form di bawah lalu kirim lewat WhatsApp. Pesanan bisa diambil di warung, atau diantar khusus wilayah Jakarta.</p>
-  <div class="cgal">${CATERING_FOTO.map(x => `<div class="ctile">${x.foto ? `<img src="${x.foto}" alt="${x.cap}" onerror="this.remove()">` : ""}<em>${x.e}</em><span>${x.cap}</span></div>`).join("")}</div>
+  <section class="hero">
+    <div><span class="tag">Catering</span>
+      <h1>Pesan Banyak<em>untuk Acaramu</em></h1>
+      <p>Butuh pesanan dalam jumlah banyak untuk acara? Isi form pesanan lalu kirim lewat WhatsApp. Bisa diambil di warung, atau diantar khusus wilayah Jakarta.</p>
+      <div class="cta"><button type="button" class="btn p" id="ctGo">Isi form pesanan</button></div></div>
+    <div class="visual"><div class="blob">${CATERING_HERO ? `<img src="${CATERING_HERO}" alt="Catering Warung Cemilan Key" onerror="this.parentNode.textContent='🍱'">` : "🍱"}</div>
+      <span class="deco d1">🍟</span><span class="deco d2">🍃</span><span class="heart">❤</span>
+      <div class="chip c1"><span class="ic">🛵</span><div><small>Cara terima</small><b>Ambil atau antar</b></div></div>
+      <div class="chip c2"><span class="ic">💬</span><div><small>Pesan lewat</small><b>WhatsApp</b></div></div></div>
+  </section>  <div class="cgal">${CATERING_FOTO.map(x => `<div class="ctile">${x.foto ? `<img src="${x.foto}" alt="${x.cap}" onerror="this.remove()">` : ""}<em>${x.e}</em><span>${x.cap}</span></div>`).join("")}</div>
   <form class="cform" id="ctForm"><h3>Ajukan Pesanan Catering</h3>
     <div class="cgrid">
       <div><label>Nama</label><input id="ctNama" required maxlength="50"></div>
@@ -234,6 +242,7 @@ const CATERING_FOTO = [
   </form>
 </div>`);
   const f = document.getElementById("ctForm"), box = document.getElementById("ctAntar"), al = document.getElementById("ctAlamat");
+    document.getElementById("ctGo").addEventListener("click", () => f.scrollIntoView({ behavior: "smooth" }));
   const terima = () => f.querySelector('input[name="ctTerima"]:checked').value;
   f.addEventListener("change", () => {
     const antar = terima().startsWith("Antar");
