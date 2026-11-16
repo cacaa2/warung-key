@@ -214,7 +214,7 @@ const CATERING_FOTO = [
   document.getElementById("toko").insertAdjacentHTML("beforeend", `
 <div class="wrap sec" id="cater">
   <div class="eyebrow">Catering</div><h2 class="t">Pesan Banyak untuk Acaramu</h2>
-  <p class="cintro">Butuh pesanan dalam jumlah banyak untuk acara? Isi form di bawah lalu kirim lewat WhatsApp. Pesanan bisa diambil di warung, atau diantar khusus wilayah Karawang.</p>
+  <p class="cintro">Butuh pesanan dalam jumlah banyak untuk acara? Isi form di bawah lalu kirim lewat WhatsApp. Pesanan bisa diambil di warung, atau diantar khusus wilayah Jakarta.</p>
   <div class="cgal">${CATERING_FOTO.map(x => `<div class="ctile">${x.foto ? `<img src="${x.foto}" alt="${x.cap}" onerror="this.remove()">` : ""}<em>${x.e}</em><span>${x.cap}</span></div>`).join("")}</div>
   <form class="cform" id="ctForm"><h3>Ajukan Pesanan Catering</h3>
     <div class="cgrid">
