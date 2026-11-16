@@ -19,7 +19,8 @@ const MENU = [
   { id: 9, nama: "Es Jeruk", harga: 6000, kat: "Minuman", e: "🍊", foto: "img/esjeruk.jpg" },
   { id: 10, nama: "Ricebowl", harga: 15000, kat: "Cemilan", e: "🍜", foto: "img/ricebowl.jpg" },
   { id: 11, nama: "Cireng", harga: 10000, kat: "Cemilan", e: "🥟", foto: "img/cireng.jpg" },
-  { id: 12, nama: "Es Teler", harga: 20000, kat: "Minuman", e: "🧋", foto: "img/esteler.jpg" }
+  { id: 12, nama: "Es Teler", harga: 20000, kat: "Minuman", e: "🧋", foto: "img/esteler.jpg" },
+  { id: 13, nama: "Nasi Uduk Betawi", harga: 17000, kat: "Nasi", e: "🍚", foto: "img/nasiudukbetawi.jpg" }
 ];
 
 // ===== FUNGSI BANTU =====
@@ -41,7 +42,7 @@ const elMin = document.getElementById("minHarga");
 if (elMin) elMin.textContent = rp(Math.min(...MENU.map(m => m.harga)));
 if (HERO_FOTO) blob.innerHTML = `<img src="${HERO_FOTO}" alt="Warung Cemilan Key" onerror="this.parentNode.textContent='🍣'">`;
 const KAT_FOTO = { Semua: "img/logosemua.jpg", Steak: "img/logosteak.jpg", Cemilan: "img/logocemilan.jpg", Sushi: "img/logosushi.jpg", Minuman: "img/logominuman.jpg" };
-const KAT_E = { Semua: "🍽️", Steak: "🍗", Sushi: "🍣", Cemilan: "🍟", Minuman: "🧋" };
+const KAT_E = { Semua: "🍽️", Steak: "🍗", Sushi: "🍣", Cemilan: "🍟", Minuman: "🧋", Nasi: "🍚" };
 function renderPromo() {
   const a = MENU[0], z = MENU.reduce((x, y) => y.harga < x.harga ? y : x);
   const P = [
@@ -234,9 +235,9 @@ const CATERING_FOTO = [
     <label>Cara terima pesanan</label>
     <div class="opts">
       <label class="opt on"><input type="radio" name="ctTerima" value="Ambil di warung" checked>🏪 Ambil di warung</label>
-      <label class="opt"><input type="radio" name="ctTerima" value="Antar ke lokasi (Karawang)">🛵 Antar ke lokasi<br><small>khusus Karawang</small></label>
+      <label class="opt"><input type="radio" name="ctTerima" value="Antar ke lokasi (Jakarta)">🛵 Antar ke lokasi<br><small>khusus Jakarta</small></label>
     </div>
-    <div id="ctAntar" hidden><label>Alamat lokasi acara (Karawang)</label><textarea id="ctAlamat" class="ta" rows="3" maxlength="200" placeholder="Jalan, RT/RW, desa/kelurahan, kecamatan, patokan"></textarea></div>
+    <div id="ctAntar" hidden><label>Alamat lokasi acara (Jakarta)</label><textarea id="ctAlamat" class="ta" rows="3" maxlength="200" placeholder="Jalan, RT/RW, desa/kelurahan, kecamatan, patokan"></textarea></div>
     <p class="note">Harga dan ongkir dikonfirmasi lewat WhatsApp.</p>
     <button class="btn p" style="width:100%;margin-top:10px">Kirim ke WhatsApp</button>
   </form>
