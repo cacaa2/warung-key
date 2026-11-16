@@ -234,9 +234,9 @@ const CATERING_FOTO = [
     <label>Cara terima pesanan</label>
     <div class="opts">
       <label class="opt on"><input type="radio" name="ctTerima" value="Ambil di warung" checked>🏪 Ambil di warung</label>
-      <label class="opt"><input type="radio" name="ctTerima" value="Antar ke lokasi (Karawang)">🛵 Antar ke lokasi<br><small>khusus Karawang</small></label>
+      <label class="opt"><input type="radio" name="ctTerima" value="Antar ke lokasi (Jakarta)">🛵 Antar ke lokasi<br><small>khusus Jakarta</small></label>
     </div>
-    <div id="ctAntar" hidden><label>Alamat lokasi acara (Karawang)</label><textarea id="ctAlamat" class="ta" rows="3" maxlength="200" placeholder="Jalan, RT/RW, desa/kelurahan, kecamatan, patokan"></textarea></div>
+    <div id="ctAntar" hidden><label>Alamat lokasi acara (Jakarta)</label><textarea id="ctAlamat" class="ta" rows="3" maxlength="200" placeholder="Jalan, RT/RW, desa/kelurahan, kecamatan, patokan"></textarea></div>
     <p class="note">Harga dan ongkir dikonfirmasi lewat WhatsApp.</p>
     <button class="btn p" style="width:100%;margin-top:10px">Kirim ke WhatsApp</button>
   </form>
