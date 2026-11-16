@@ -4,7 +4,7 @@ const HERO_FOTO = "img/hero.jpg";
 const QRIS_FOTO = "img/qris.png"; // gambar QRIS warung (ada di folder img)
 // Alamat Google Apps Script (berakhiran /exec). Kosongkan "" kalau belum dipasang.
 const SHEET_URL = "";
-const QRIS_AKTIF = false; // ganti true kalau QRIS sudah siap dipakai
+const QRIS_AKTIF = true; // ganti true kalau QRIS sudah siap dipakai
 const ONGKIR = 5000; // tarif antar flat, khusus wilayah Karawang
 // foto: isi path foto di folder img, contoh "img/steak-ayam.jpg". Kosong = pakai emoji.
 const MENU = [
@@ -18,8 +18,8 @@ const MENU = [
   { id: 8, nama: "Es Teh", harga: 5000, kat: "Minuman", e: "🧋", foto: "img/esteh.jpg" },
   { id: 9, nama: "Es Jeruk", harga: 6000, kat: "Minuman", e: "🍊", foto: "img/esjeruk.jpg" },
   { id: 10, nama: "Ricebowl", harga: 15000, kat: "Cemilan", e: "🍜", foto: "img/ricebowl.jpg" },
-  { id: 11, nama: "Cireng", harga: 10000, kat: "Cemilan", e: "🥟", foto: "img/ricebowl.jpg" },
-  { id: 12, nama: "Es Teler", harga: 20000, kat: "Minuman", e: "🧋", foto: "img/esteler.jpg" },
+  { id: 11, nama: "Cireng", harga: 10000, kat: "Cemilan", e: "🥟", foto: "img/cireng.jpg" },
+  { id: 12, nama: "Es Teler", harga: 20000, kat: "Minuman", e: "🧋", foto: "img/esteler.jpg" }
 ];
 
 // ===== FUNGSI BANTU =====
@@ -40,22 +40,23 @@ if (!QRIS_AKTIF) {
 const elMin = document.getElementById("minHarga");
 if (elMin) elMin.textContent = rp(Math.min(...MENU.map(m => m.harga)));
 if (HERO_FOTO) blob.innerHTML = `<img src="${HERO_FOTO}" alt="Warung Cemilan Key" onerror="this.parentNode.textContent='🍣'">`;
+const KAT_FOTO = { Semua: "img/kat-semua.jpg", Steak: "img/kat-logosteak.jpg", Cemilan: "img/kat-logocemilan.jpg", Sushi: "img/kat-logosushi.jpg", Minuman: "img/kat-logominuman.jpg" };
 const KAT_E = { Semua: "🍽️", Steak: "🍗", Sushi: "🍣", Cemilan: "🍟", Minuman: "🧋" };
 function renderPromo() {
   const a = MENU[0], z = MENU.reduce((x, y) => y.harga < x.harga ? y : x);
   const P = [
     { c: "", t: "Pilihan Key", s: a.nama, p: rp(a.harga), foto: a.foto, e: a.e },
     { c: "red", t: "Mulai dari", s: z.nama, p: rp(z.harga), foto: z.foto, e: z.e },
-    { c: "", t: "Antar Karawang", s: "Ongkir flat " + rp(ONGKIR), e: "🛵" },
-    { c: "w3", t: "Jam buka", s: "10.00 - 22.00", e: "🕙" },
+    { c: "", t: "Antar Jakarta", s: "Ongkir flat " + rp(ONGKIR), e: "🛵" },
+    { c: "w3", t: "Jam buka", s: "07.00 - 17.00", e: "🕙" },
     { c: "w3", t: "Pembayaran", s: QRIS_AKTIF ? "Cash & QRIS" : "Cash", e: "💵", btn: 1 }
   ];
   promo.innerHTML = P.map(x => `<div class="pc ${x.c}"><div><h3>${x.t}</h3><small>${x.s}</small>${x.p ? `<div class="pp">${x.p}</div>` : ""}${x.btn ? `<a class="btn p" href="#menu">Pesan sekarang</a>` : ""}</div><div class="pcirc">${x.foto ? `<img src="${x.foto}" alt="${x.s}" onerror="this.parentNode.textContent='${x.e}'">` : x.e}</div></div>`).join("");
 }
 function renderMenu() {
   cats.innerHTML = ["Semua", ...new Set(MENU.map(m => m.kat))].map(k => {
-    const e = KAT_E[k] || "🍴", f = (MENU.find(m => m.kat == k && m.foto) || {}).foto;
-    const ic = k != "Semua" && f ? `<img src="${f}" alt="${k}" onerror="this.parentNode.textContent='${e}'">` : e;
+  const e = KAT_E[k] || "🍴", f = KAT_FOTO[k] || (k != "Semua" && (MENU.find(m => m.kat == k && m.foto) || {}).foto);
+    const ic = f ? `<img src="${f}" alt="${k}" onerror="this.parentNode.textContent='${e}'">` : e;
     return `<button class="cat ${k == kat ? "on" : ""}" onclick="kat='${k}';renderMenu()"><span class="ci">${ic}</span>${k}</button>`;
   }).join("");
   grid.innerHTML = MENU.filter(m => kat == "Semua" || m.kat == kat).map(m => `<article class="card"><span class="badge">${m.kat}</span><div class="pic">${m.foto ? `<img src="${m.foto}" alt="${m.nama}" onerror="this.parentNode.textContent='${m.e}'">` : m.e}</div><h3>${m.nama}</h3><p class="hrg">${rp(m.harga)}</p><button class="btn y" onclick="add(${m.id})">Tambah</button></article>`).join("");
@@ -126,7 +127,7 @@ function bayar(e) {
     id: "ORD-" + Date.now().toString().slice(-6),
     waktu: new Date().toISOString(),
     nama: nm,
-    layanan: kirim ? "Antar (Karawang)" : "Ambil di warung",
+    layanan: kirim ? "Antar (Jakarta)" : "Ambil di warung",
     hp: kirim ? nohp : "",
     alamat: kirim ? al : "",
     catatan: kirim ? cat : "",
@@ -193,7 +194,7 @@ function seed() {
   for (let i = 0; i < 12; i++) {
     const d = new Date(); d.setDate(d.getDate() - Math.floor(Math.random() * 7));
     const its = [...MENU].sort(() => Math.random() - .5).slice(0, 1 + Math.floor(Math.random() * 3)).map(m => ({ nama: m.nama, q: 1 + Math.floor(Math.random() * 2), harga: m.harga }));
-    a.push({ id: "ORD-" + (100000 + i), waktu: d.toISOString(), nama: "Pelanggan " + (i + 1), metode: ["QRIS", "Cash"][i % 2], layanan: i % 3 ? "Ambil di warung" : "Antar (Karawang)", status: "lunas", total: its.reduce((s, x) => s + x.harga * x.q, 0), item: its });
+    a.push({ id: "ORD-" + (100000 + i), waktu: d.toISOString(), nama: "Pelanggan " + (i + 1), metode: ["QRIS", "Cash"][i % 2], layanan: i % 3 ? "Ambil di warung" : "Antar (Jakarta)", status: "lunas", total: its.reduce((s, x) => s + x.harga * x.q, 0), item: its });
   }
   save("orders", a); renderAdmin();
 }
