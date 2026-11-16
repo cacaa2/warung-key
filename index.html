@@ -51,14 +51,14 @@
 
 <dialog id="dlg"><h2 style="margin-top:0;font-family:Fredoka">Pesananmu</h2><div id="items"></div>
 <div class="tot"><span>Subtotal</span><span id="subTot">Rp 0</span></div>
-<div class="tot" id="ongkirRow" hidden><span>Ongkir (Karawang)</span><span id="ongkirTxt">Rp 0</span></div>
+<div class="tot" id="ongkirRow" hidden><span>Ongkir (khusus Jakarta)</span><span id="ongkirTxt">Rp 0</span></div>
 <div class="tot"><span>Total</span><span id="tot">Rp 0</span></div>
 <form onsubmit="bayar(event)"><label>Nama</label><input id="nama" required maxlength="50">
 <label>Cara terima pesanan</label><select id="layanan" onchange="upd()"><option value="Ambil">Ambil di warung (gratis)</option><option value="Antar">Antar - Karawang (+Rp 5.000)</option><option disabled>Antar ke luar Karawang (belum tersedia)</option></select>
-<p class="note">Layanan antar hanya untuk wilayah Karawang, ongkir flat Rp 5.000.</p>
+<p class="note">Layanan antar hanya untuk wilayah Jakarta, ongkir flat Rp 3.000.</p>
 <div id="antarBox" hidden>
 <label>No. WhatsApp / HP</label><input id="hp" type="tel" inputmode="tel" maxlength="20" placeholder="Contoh: 0812xxxxxxx">
-<label>Alamat lengkap (Karawang)</label><textarea id="alamat" rows="3" maxlength="200" placeholder="Jalan, RT/RW, desa/kelurahan, kecamatan, patokan" style="width:100%;font:inherit;padding:9px 12px;border:2px solid #000;border-radius:12px;resize:vertical"></textarea>
+<label>Alamat lengkap (Jakarta)</label><textarea id="alamat" rows="3" maxlength="200" placeholder="Jalan, RT/RW, desa/kelurahan, kecamatan, patokan" style="width:100%;font:inherit;padding:9px 12px;border:2px solid #000;border-radius:12px;resize:vertical"></textarea>
 <label>Catatan (opsional)</label><input id="catatan" maxlength="150" placeholder="Contoh: pedas sedikit, pagar hijau">
 </div>
 <label>Metode bayar</label><select id="metode" onchange="hitung()"><option value="QRIS">QRIS</option><option value="Cash">Cash</option></select>
