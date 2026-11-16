@@ -46,8 +46,8 @@ function renderPromo() {
   const P = [
     { c: "", t: "Pilihan Key", s: a.nama, p: rp(a.harga), foto: a.foto, e: a.e },
     { c: "red", t: "Mulai dari", s: z.nama, p: rp(z.harga), foto: z.foto, e: z.e },
-    { c: "", t: "Antar Karawang", s: "Ongkir flat " + rp(ONGKIR), e: "🛵" },
-    { c: "w3", t: "Jam buka", s: "10.00 - 22.00", e: "🕙" },
+    { c: "", t: "Antar Jakarta", s: "Ongkir flat " + rp(ONGKIR), e: "🛵" },
+    { c: "w3", t: "Jam buka", s: "07.00 - 17.00", e: "🕙" },
     { c: "w3", t: "Pembayaran", s: QRIS_AKTIF ? "Cash & QRIS" : "Cash", e: "💵", btn: 1 }
   ];
   promo.innerHTML = P.map(x => `<div class="pc ${x.c}"><div><h3>${x.t}</h3><small>${x.s}</small>${x.p ? `<div class="pp">${x.p}</div>` : ""}${x.btn ? `<a class="btn p" href="#menu">Pesan sekarang</a>` : ""}</div><div class="pcirc">${x.foto ? `<img src="${x.foto}" alt="${x.s}" onerror="this.parentNode.textContent='${x.e}'">` : x.e}</div></div>`).join("");
@@ -126,7 +126,7 @@ function bayar(e) {
     id: "ORD-" + Date.now().toString().slice(-6),
     waktu: new Date().toISOString(),
     nama: nm,
-    layanan: kirim ? "Antar (Karawang)" : "Ambil di warung",
+    layanan: kirim ? "Antar (Jakarta)" : "Ambil di warung",
     hp: kirim ? nohp : "",
     alamat: kirim ? al : "",
     catatan: kirim ? cat : "",
@@ -193,7 +193,7 @@ function seed() {
   for (let i = 0; i < 12; i++) {
     const d = new Date(); d.setDate(d.getDate() - Math.floor(Math.random() * 7));
     const its = [...MENU].sort(() => Math.random() - .5).slice(0, 1 + Math.floor(Math.random() * 3)).map(m => ({ nama: m.nama, q: 1 + Math.floor(Math.random() * 2), harga: m.harga }));
-    a.push({ id: "ORD-" + (100000 + i), waktu: d.toISOString(), nama: "Pelanggan " + (i + 1), metode: ["QRIS", "Cash"][i % 2], layanan: i % 3 ? "Ambil di warung" : "Antar (Karawang)", status: "lunas", total: its.reduce((s, x) => s + x.harga * x.q, 0), item: its });
+    a.push({ id: "ORD-" + (100000 + i), waktu: d.toISOString(), nama: "Pelanggan " + (i + 1), metode: ["QRIS", "Cash"][i % 2], layanan: i % 3 ? "Ambil di warung" : "Antar (Jakarta)", status: "lunas", total: its.reduce((s, x) => s + x.harga * x.q, 0), item: its });
   }
   save("orders", a); renderAdmin();
 }
