@@ -20,7 +20,10 @@ const MENU = [
   { id: 10, nama: "Ricebowl", harga: 15000, kat: "Cemilan", e: "🍜", foto: "img/ricebowl.jpg" },
   { id: 11, nama: "Cireng", harga: 10000, kat: "Cemilan", e: "🥟", foto: "img/cireng.jpg" },
   { id: 12, nama: "Es Teler", harga: 20000, kat: "Minuman", e: "🧋", foto: "img/esteler.jpg" },
-  { id: 13, nama: "Nasi Uduk Betawi", harga: 17000, kat: "Nasi", e: "🍚", foto: "img/nasiudukbetawi.jpg" }
+  { id: 13, nama: "Nasi Uduk Betawi", harga: 17000, kat: "Nasi", e: "🍚", foto: "img/nasiudukbetawi.jpg" },
+  { id: 14, nama: "Nasi Ayam Geprek", harga: 15000, kat: "Nasi", e: "🍚", foto: "img/ayamgeprek.jpg" },
+  { id: 15, nama: "Nasi Ayam Bakar", harga: 20000, kat: "Nasi", e: "🍚", foto: "img/ayambakar.jpg" },
+  { id: 16, nama: "Nasi Ayam Kremes", harga: 20000, kat: "Nasi", e: "🍚", foto: "img/ayamkremes.jpg" }
 ];
 
 // ===== FUNGSI BANTU =====
