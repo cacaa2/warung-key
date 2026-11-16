@@ -40,7 +40,7 @@ if (!QRIS_AKTIF) {
 const elMin = document.getElementById("minHarga");
 if (elMin) elMin.textContent = rp(Math.min(...MENU.map(m => m.harga)));
 if (HERO_FOTO) blob.innerHTML = `<img src="${HERO_FOTO}" alt="Warung Cemilan Key" onerror="this.parentNode.textContent='🍣'">`;
-const KAT_FOTO = { Semua: "img/kat-semua.jpg", Steak: "img/kat-logosteak.jpg", Cemilan: "img/kat-logocemilan.jpg", Sushi: "img/kat-logosushi.jpg", Minuman: "img/kat-logominuman.jpg" };
+const KAT_FOTO = { Semua: "img/logosemua.jpg", Steak: "img/logosteak.jpg", Cemilan: "img/logocemilan.jpg", Sushi: "img/logosushi.jpg", Minuman: "img/logominuman.jpg" };
 const KAT_E = { Semua: "🍽️", Steak: "🍗", Sushi: "🍣", Cemilan: "🍟", Minuman: "🧋" };
 function renderPromo() {
   const a = MENU[0], z = MENU.reduce((x, y) => y.harga < x.harga ? y : x);
