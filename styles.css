@@ -218,7 +218,7 @@ nav a.on{color:var(--marun);border-bottom-color:var(--marun)}
 @media(max-width:760px){#cater .c1{left:0}#cater .c2{right:0;bottom:-4%}}
 
 /* ===== header diperlebar ===== */
-.bar{padding:16px clamp(18px,4vw,56px)}
+.bar{padding:22px clamp(18px,4vw,56px)}
 .logo{font-size:1.5rem}
 .logo i{padding:3px 9px;font-size:1.3rem}
 .logo,nav a{white-space:nowrap}
@@ -228,4 +228,4 @@ nav a{font-size:1.02rem}
 .act .btn{font-size:1rem;padding:11px 26px}
 #home .hero{min-height:calc(100svh - 94px)}
 @media(max-width:1000px){.logo{font-size:1.2rem}nav{gap:18px}.act .btn{font-size:.9rem;padding:9px 16px}}
-@media(max-width:760px){.bar{padding:10px 14px}.logo{font-size:1.1rem}.act .btn{font-size:.85rem;padding:8px 14px}nav{gap:18px}}
+@media(max-width:760px){.bar{padding:10px 14px}.logo{font-size:1.2rem}.act .btn{font-size:.85rem;padding:8px 14px}nav{gap:18px}}
