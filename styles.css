@@ -216,3 +216,16 @@ nav a.on{color:var(--marun);border-bottom-color:var(--marun)}
 @media(max-width:1000px){#home .hero h1{font-size:clamp(2.8rem,8vw,4.6rem)}#home .blob{width:min(460px,88%);font-size:10rem}#home .visual::before{width:min(540px,100%)}}
 @media(max-width:760px){#home .hero{min-height:auto;gap:24px}#home .hero h1{font-size:clamp(2.6rem,13vw,3.8rem)}#home .hero p{font-size:1.05rem}#home .btn{font-size:1rem;padding:12px 24px}#home .blob{width:min(360px,86vw);font-size:8rem}#home .visual::before{width:min(420px,92vw)}#home .chip{padding:8px 12px}#home .chip b{font-size:.95rem}#home .chip small{font-size:.72rem}#home .chip .ic{width:34px;height:34px;font-size:1.1rem}#home .c1{left:0}#home .c2{right:0;bottom:-4%}#home .heart{width:46px;height:46px}}
 @media(max-width:760px){#cater .c1{left:0}#cater .c2{right:0;bottom:-4%}}
+
+/* ===== header diperlebar ===== */
+.bar{padding:16px clamp(18px,4vw,56px)}
+.logo{font-size:1.5rem}
+.logo i{padding:3px 9px;font-size:1.3rem}
+.logo,nav a{white-space:nowrap}
+nav{gap:34px}
+nav a{font-size:1.02rem}
+.act{gap:12px}
+.act .btn{font-size:1rem;padding:11px 26px}
+#home .hero{min-height:calc(100svh - 94px)}
+@media(max-width:1000px){.logo{font-size:1.2rem}nav{gap:18px}.act .btn{font-size:.9rem;padding:9px 16px}}
+@media(max-width:760px){.bar{padding:10px 14px}.logo{font-size:1.1rem}.act .btn{font-size:.85rem;padding:8px 14px}nav{gap:18px}}
