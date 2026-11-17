@@ -20,7 +20,10 @@ const MENU = [
   { id: 10, nama: "Ricebowl", harga: 15000, kat: "Cemilan", e: "🍜", foto: "img/ricebowl.jpg" },
   { id: 11, nama: "Cireng", harga: 10000, kat: "Cemilan", e: "🥟", foto: "img/cireng.jpg" },
   { id: 12, nama: "Es Teler", harga: 20000, kat: "Minuman", e: "🧋", foto: "img/esteler.jpg" },
-  { id: 13, nama: "Nasi Uduk Betawi", harga: 17000, kat: "Nasi", e: "🍚", foto: "img/nasiudukbetawi.jpg" }
+  { id: 13, nama: "Nasi Uduk Betawi", harga: 17000, kat: "Nasi", e: "🍚", foto: "img/nasiudukbetawi.jpg" },
+  { id: 14, nama: "Nasi Ayam Geprek", harga: 15000, kat: "Nasi", e: "🍚", foto: "img/ayamgeprek.jpg" },
+  { id: 15, nama: "Nasi Ayam Bakar", harga: 20000, kat: "Nasi", e: "🍚", foto: "img/ayambakar.jpg" },
+  { id: 16, nama: "Nasi Ayam Kremes", harga: 20000, kat: "Nasi", e: "🍚", foto: "img/ayamkremes.jpg" }
 ];
 
 // ===== FUNGSI BANTU =====
@@ -41,7 +44,7 @@ if (!QRIS_AKTIF) {
 const elMin = document.getElementById("minHarga");
 if (elMin) elMin.textContent = rp(Math.min(...MENU.map(m => m.harga)));
 if (HERO_FOTO) blob.innerHTML = `<img src="${HERO_FOTO}" alt="Warung Cemilan Key" onerror="this.parentNode.textContent='🍣'">`;
-const KAT_FOTO = { Semua: "img/logosemua.jpg", Steak: "img/logosteak.jpg", Cemilan: "img/logocemilan.jpg", Sushi: "img/logosushi.jpg", Minuman: "img/logominuman.jpg" };
+const KAT_FOTO = { Semua: "img/logosemua.jpg", Steak: "img/logosteak.jpg", Cemilan: "img/logocemilan.jpg", Sushi: "img/logosushi.jpg", Minuman: "img/logominuman.jpg", Nasi: "img/logonasi.jpg" };
 const KAT_E = { Semua: "🍽️", Steak: "🍗", Sushi: "🍣", Cemilan: "🍟", Minuman: "🧋", Nasi: "🍚" };
 function renderPromo() {
   const a = MENU[0], z = MENU.reduce((x, y) => y.harga < x.harga ? y : x);
