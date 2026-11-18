@@ -225,8 +225,8 @@ const CATERING_FOTO = [
       <div class="cta"><button type="button" class="btn p" id="ctGo">Isi form pesanan</button></div></div>
     <div class="visual"><div class="blob">${CATERING_HERO ? `<img src="${CATERING_HERO}" alt="Catering Warung Cemilan Key" onerror="this.parentNode.textContent='🍱'">` : "🍱"}</div>
       <span class="deco d1">🍟</span><span class="deco d2">🍃</span><span class="heart">❤</span>
-      <div class="chip c1"><span class="ic">🛵</span><div><small>Cara terima</small><b>Ambil atau antar</b></div></div>
-      <div class="chip c2"><span class="ic">💬</span><div><small>Pesan lewat</small><b>WhatsApp</b></div></div></div>
+      <div class="chip c1"><span class="ic"><img src="img/chippesanan.jpg" alt="" onerror="this.parentNode.textContent='🛵'"></span><div><small>Cara terima</small><b>Ambil atau antar</b></div></div>
+      <div class="chip c2"><span class="ic"><img src="img/whatsapp.png" alt="" onerror="this.parentNode.textContent='💬'"></span><div><small>Pesan lewat</small><b>WhatsApp</b></div></div>
   </section>  <div class="cgal">${CATERING_FOTO.map(x => `<div class="ctile">${x.foto ? `<img src="${x.foto}" alt="${x.cap}" onerror="this.remove()">` : ""}<em>${x.e}</em><span>${x.cap}</span></div>`).join("")}</div>
   <form class="cform" id="ctForm"><h3>Ajukan Pesanan Catering</h3>
     <div class="cgrid">
