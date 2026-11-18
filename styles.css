@@ -275,3 +275,11 @@ dialog[open]{box-shadow:8px 8px 0 var(--bayang)}
 
 /* garis (outline) lainnya */
 header,.strip,footer,input,select,.ta,.panel,.stat,.opt,.cm,.cmp,.ci,.pcirc,.badge,.st,.tag,.qty button,.logo i,.lbar,.blob{border-color:var(--garis)}
+/* ===== bar kategori: transparan, tanpa outline ===== */
+.catbar{
+  background:rgba(255,255,255,.55);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border:0;
+  box-shadow:0 8px 24px #b0183d14;
+}
