@@ -257,3 +257,21 @@ nav a{font-size:1.2rem}
 .cq{width:76px;flex:none;text-align:center;padding:7px}
 .cring{background:var(--krem);border:2px dashed var(--pink);border-radius:16px;padding:4px 16px;margin-top:14px}
 .cring .tot{margin:8px 0}
+/* ===== ganti warna garis & bayangan ===== */
+:root{--garis:#5b1a2c;--bayang:#F0A9A0}
+
+/* tombol */
+.btn{border-color:var(--garis);box-shadow:0 3px 0 var(--garis)}
+.btn:hover{box-shadow:0 5px 0 var(--garis)}
+.btn:active{box-shadow:0 1px 0 var(--garis)}
+.opt.on{box-shadow:0 3px 0 var(--garis)}
+
+/* kartu & kotak */
+.card,.catbar,.pc,.ctile,.cform,.af{border-color:var(--garis);box-shadow:4px 4px 0 var(--bayang)}
+.card:hover{box-shadow:6px 10px 0 var(--bayang)}
+.banner{border-color:var(--garis);box-shadow:6px 6px 0 var(--bayang)}
+dialog{border-color:var(--garis)}
+dialog[open]{box-shadow:8px 8px 0 var(--bayang)}
+
+/* garis (outline) lainnya */
+header,.strip,footer,input,select,.ta,.panel,.stat,.opt,.cm,.cmp,.ci,.pcirc,.badge,.st,.tag,.qty button,.logo i,.lbar,.blob{border-color:var(--garis)}
