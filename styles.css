@@ -321,6 +321,31 @@ header,.strip,footer,input,select,.ta,.panel,.stat,.opt,.cm,.cmp,.ci,.pcirc,.bad
   .ci{width:54px;height:54px}
   .banner{padding:22px}
   .banner h2{font-size:1.4rem}
+  /* ===== kartu menu: lebih natural ===== */
+.card{
+  border:1px solid #f0dcd2;
+  border-radius:20px;
+  box-shadow:0 6px 20px #b0183d1a;
+}
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 14px 30px #b0183d2e;
+}
+
+/* tombol Tambah */
+.card .btn{
+  border:0;
+  box-shadow:none;
+  background:var(--kuning);
+}
+.card .btn:hover{
+  background:#ffc93d;
+  box-shadow:none;
+  transform:none;
+}
+
+/* label kategori */
+.badge{border:0;box-shadow:0 2px 8px #0002}
 }
 /* ===== jarak kiri-kanan section ===== */
 .sec{padding-left:20px;padding-right:20px}
