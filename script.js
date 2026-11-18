@@ -275,3 +275,79 @@ const CATERING_FOTO = [
   }
   addEventListener("hashchange", route); route();
 })();
+
+// ===== Catering: pilih menu, harga + ongkir otomatis =====
+const ONGKIR_CATERING = ONGKIR; // ongkir catering (sama dengan ongkir biasa). Ubah angkanya kalau beda.
+(function () {
+  const lama = document.getElementById("ctForm"); if (!lama) return;
+  const f = lama.cloneNode(false); lama.replaceWith(f); // ganti form lama dengan form baru
+  const $ = id => document.getElementById(id);
+  f.innerHTML = `<h3>Pesan Catering</h3>
+    <label>Pilih menu &amp; jumlah porsi</label>
+    <div class="cmenu">${MENU.map(m => `<div class="cm" id="cm${m.id}"><div class="cmp">${m.foto ? `<img src="${m.foto}" alt="" onerror="this.parentNode.textContent='${m.e}'">` : m.e}</div><div class="cmi"><b>${m.nama}</b><small>${rp(m.harga)}</small></div><input class="cq" type="number" min="0" max="500" value="0" inputmode="numeric" data-id="${m.id}" aria-label="Jumlah ${m.nama}"></div>`).join("")}</div>
+    <div class="cgrid">
+      <div><label>Nama</label><input id="ctNama" required maxlength="50"></div>
+      <div><label>No. WhatsApp / HP</label><input id="ctHp" type="tel" inputmode="tel" required maxlength="20" placeholder="0812xxxxxxx"></div>
+      <div class="full"><label>Tanggal &amp; jam acara</label><input id="ctTgl" type="datetime-local" required></div>
+    </div>
+    <label>Cara terima pesanan</label>
+    <div class="opts">
+      <label class="opt on"><input type="radio" name="ctTerima" value="Ambil di warung" checked>🏪 Ambil di warung<br><small>gratis ongkir</small></label>
+      <label class="opt"><input type="radio" name="ctTerima" value="Antar ke lokasi (Karawang)">🛵 Antar ke lokasi<br><small>khusus Karawang, +${rp(ONGKIR_CATERING)}</small></label>
+    </div>
+    <div id="ctAntar" hidden><label>Alamat lokasi acara (Karawang)</label><textarea id="ctAlamat" class="ta" rows="3" maxlength="200" placeholder="Jalan, RT/RW, desa/kelurahan, kecamatan, patokan"></textarea></div>
+    <label>Catatan (opsional)</label><input id="ctCatatan" maxlength="100" placeholder="Contoh: pedas sedikit">
+    <label>Metode bayar</label><select id="ctMetode">${QRIS_AKTIF ? '<option value="QRIS">QRIS</option>' : ""}<option value="Cash">Cash</option></select>
+    <div class="cring">
+      <div class="tot"><span>Subtotal</span><span id="ctSub">Rp 0</span></div>
+      <div class="tot" id="ctOngRow" hidden><span>Ongkir (Karawang)</span><span id="ctOng"></span></div>
+      <div class="tot"><span>Total bayar</span><span id="ctTot">Rp 0</span></div>
+    </div>
+    <p class="note" id="ctInfo"></p>
+    <button class="btn p" style="width:100%;margin-top:10px">Pesan catering</button>`;
+
+  const terima = () => f.querySelector('input[name="ctTerima"]:checked').value, antar = () => terima().startsWith("Antar");
+  const jumlah = () => MENU.map(m => ({ m, q: Math.max(0, Math.min(500, parseInt($("cm" + m.id).querySelector(".cq").value) || 0)) })).filter(x => x.q > 0);
+  const hitungCt = () => {
+    const its = jumlah(), sub = its.reduce((s, x) => s + x.m.harga * x.q, 0), ong = antar() && sub ? ONGKIR_CATERING : 0;
+    MENU.forEach(m => $("cm" + m.id).classList.toggle("on", (parseInt($("cm" + m.id).querySelector(".cq").value) || 0) > 0));
+    $("ctAntar").hidden = !antar(); $("ctAlamat").required = antar();
+    $("ctOngRow").hidden = !ong; $("ctOng").textContent = rp(ong);
+    $("ctSub").textContent = rp(sub); $("ctTot").textContent = rp(sub + ong);
+    f.querySelectorAll(".opt").forEach(o => o.classList.toggle("on", o.querySelector("input").checked));
+    $("ctInfo").textContent = $("ctMetode").value === "Cash" ? (antar() ? "Bayar tunai ke kurir saat pesanan sampai." : "Bayar tunai di warung saat pesanan diambil.") : "Scan QRIS yang muncul setelah memesan, lalu kirim bukti bayar lewat WhatsApp.";
+    return { its, sub, ong, tot: sub + ong };
+  };
+  f.addEventListener("input", hitungCt); f.addEventListener("change", hitungCt); hitungCt();
+
+  f.addEventListener("submit", e => {
+    e.preventDefault();
+    const { its, sub, ong, tot } = hitungCt(), v = id => $(id).value.trim();
+    if (!its.length) return alert("Pilih minimal satu menu dan isi jumlah porsinya.");
+    if (!/^[0-9+\s-]{9,20}$/.test(v("ctHp"))) return alert("Nomor WhatsApp/HP belum benar.");
+    if (antar() && v("ctAlamat").length < 10) return alert("Alamat lokasi acara harus diisi (jalan, RT/RW, desa/kelurahan, kecamatan).");
+    const d = new Date(v("ctTgl")), tgl = isNaN(d) ? v("ctTgl") : d.toLocaleString("id-ID", { dateStyle: "full", timeStyle: "short" });
+    const metode = v("ctMetode"), cash = metode === "Cash";
+    const o = {
+      id: "CTR-" + Date.now().toString().slice(-6), waktu: new Date().toISOString(), nama: v("ctNama").slice(0, 50),
+      layanan: antar() ? "Catering - Antar (Karawang)" : "Catering - Ambil di warung",
+      hp: v("ctHp").slice(0, 20), alamat: antar() ? v("ctAlamat").slice(0, 200) : "",
+      catatan: ("Acara: " + tgl + (v("ctCatatan") ? " | " + v("ctCatatan") : "")).slice(0, 200),
+      metode, status: cash ? "catering - bayar di tempat" : "catering - menunggu konfirmasi",
+      subtotal: sub, ongkir: ong, total: tot,
+      item: its.map(x => ({ nama: x.m.nama, q: x.q, harga: x.m.harga }))
+    };
+    const all = load("orders", []); all.push(o); save("orders", all);
+    kirimKeSheet(o);
+    const t = "Halo, saya " + o.nama + ". Saya mau pesan catering (" + o.id + "):\n" + o.item.map(i => "- " + i.nama + " x" + i.q).join("\n") +
+      "\nSubtotal " + rp(sub) + (ong ? "\nOngkir " + rp(ong) : "") + "\nTotal " + rp(tot) + " (" + metode + ")" +
+      "\nTanggal & jam acara: " + tgl + "\nCara terima: " + terima() + (antar() ? "\nAlamat: " + o.alamat : "") +
+      "\nNo. HP: " + o.hp + (v("ctCatatan") ? "\nCatatan: " + v("ctCatatan") : "") + (cash ? "" : "\nBukti pembayaran QRIS saya lampirkan di chat ini.");
+    wa.href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(t);
+    wa.textContent = cash ? "Kirim pesanan ke WhatsApp" : "Kirim bukti bayar ke WhatsApp";
+    okmsg.textContent = "Pesanan catering " + o.id + " tercatat dengan total " + rp(tot) + ". Kirim ke WhatsApp supaya segera dikonfirmasi.";
+    const box = $("qrisBox"); if (box) { box.hidden = cash; if (!cash) { $("qrisImg").src = QRIS_FOTO; $("qrisTotal").textContent = rp(tot); } }
+    f.querySelectorAll(".cq").forEach(i => i.value = 0); ["ctNama", "ctHp", "ctTgl", "ctAlamat", "ctCatatan"].forEach(id => $(id).value = "");
+    hitungCt(); ok.showModal();
+  });
+})();
