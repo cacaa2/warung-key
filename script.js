@@ -300,7 +300,7 @@ const ONGKIR_CATERING = ONGKIR; // ongkir catering (sama dengan ongkir biasa). U
     <label>Metode bayar</label><select id="ctMetode">${QRIS_AKTIF ? '<option value="QRIS">QRIS</option>' : ""}<option value="Cash">Cash</option></select>
     <div class="cring">
       <div class="tot"><span>Subtotal</span><span id="ctSub">Rp 0</span></div>
-      <div class="tot" id="ctOngRow" hidden><span>Ongkir (Karawang)</span><span id="ctOng"></span></div>
+      <div class="tot" id="ctOngRow" hidden><span>Ongkir (Jakarta)</span><span id="ctOng"></span></div>
       <div class="tot"><span>Total bayar</span><span id="ctTot">Rp 0</span></div>
     </div>
     <p class="note" id="ctInfo"></p>
