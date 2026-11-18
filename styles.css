@@ -155,7 +155,7 @@ dialog[open]{animation:pop .2s;box-shadow:8px 8px 0 #000}
 .pcirc img{width:100%;height:100%;object-fit:cover}
 @media(max-width:760px){.pc,.pc.w3{grid-column:1/-1}.pcirc{width:84px;height:84px;font-size:2.4rem}.cats{gap:14px}}
 .ci img{transform:scale(1.4)}
-.ci img[alt="Steak"]{transform:none}
+.ci img[alt="Steak"],.ci img[alt="Cemilan"],.ci img[alt="Nasi"]{transform:none}
 /* ===== layar loading ===== */
 #loader{position:fixed;inset:0;z-index:99;background:var(--kuning);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;transition:opacity .5s,visibility .5s;animation:hideLoader 0s 7s forwards}
 #loader.off{opacity:0;visibility:hidden}
