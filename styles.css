@@ -247,3 +247,13 @@ nav a{font-size:1.2rem}
 .chip .ic{overflow:hidden;padding:0}
 .chip .ic img{width:100%;height:100%;object-fit:cover;display:block}
 .chip .ic img[src*="whatsapp"]{transform:scale(1.4)}
+/* ===== form catering: pilih menu ===== */
+.cmenu{display:grid;gap:8px;margin:6px 0 6px;max-height:380px;overflow-y:auto;padding:2px 4px 4px 2px}
+.cm{display:flex;align-items:center;gap:12px;border:2px solid #000;border-radius:16px;padding:8px 12px;background:var(--krem);transition:background .15s}
+.cm.on{background:var(--kuning)}
+.cmp{flex:none;width:52px;height:52px;border-radius:50%;border:2px solid #000;background:#fff;overflow:hidden;display:grid;place-items:center;font-size:1.6rem}
+.cmp img{width:100%;height:100%;object-fit:cover;display:block}
+.cmi{flex:1;min-width:0}.cmi b{display:block;font-size:.95rem}.cmi small{color:var(--pink);font-weight:600}
+.cq{width:76px;flex:none;text-align:center;padding:7px}
+.cring{background:var(--krem);border:2px dashed var(--pink);border-radius:16px;padding:4px 16px;margin-top:14px}
+.cring .tot{margin:8px 0}
