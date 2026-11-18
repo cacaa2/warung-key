@@ -53,9 +53,9 @@ function renderPromo() {
   const P = [
     { c: "", t: "Pilihan Key", s: a.nama, p: rp(a.harga), foto: a.foto, e: a.e },
     { c: "red", t: "Mulai dari", s: z.nama, p: rp(z.harga), foto: z.foto, e: z.e },
-    { c: "", t: "Antar Jakarta", s: "Ongkir flat " + rp(ONGKIR), e: "🛵" },
-    { c: "w3", t: "Jam buka", s: "07.00 - 17.00", e: "🕙" },
-    { c: "w3", t: "Pembayaran", s: QRIS_AKTIF ? "Cash & QRIS" : "Cash", e: "💵", btn: 1 }
+   { c: "", t: "Antar Jakarta", s: "Ongkir flat " + rp(ONGKIR), foto: "img/ongkir.jpg", e: "🛵" },
+   { c: "w3", t: "Jam buka", s: "07.00 - 17.00", foto: "img/jambuka.jpg", e: "🕙" },
+   { c: "w3", t: "Pembayaran", s: QRIS_AKTIF ? "Cash & QRIS" : "Cash", foto: "img/pembayaran.jpg", e: "💵", btn: 1 }
   ];
   promo.innerHTML = P.map(x => `<div class="pc ${x.c}"><div><h3>${x.t}</h3><small>${x.s}</small>${x.p ? `<div class="pp">${x.p}</div>` : ""}${x.btn ? `<a class="btn p" href="#menu">Pesan sekarang</a>` : ""}</div><div class="pcirc">${x.foto ? `<img src="${x.foto}" alt="${x.s}" onerror="this.parentNode.textContent='${x.e}'">` : x.e}</div></div>`).join("");
 }
