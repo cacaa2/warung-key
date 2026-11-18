@@ -17,13 +17,15 @@ const MENU = [
   { id: 7, nama: "Salad Buah", harga: 13000, kat: "Cemilan", e: "🥗", foto: "img/saladbuah.jpg" },
   { id: 8, nama: "Es Teh", harga: 5000, kat: "Minuman", e: "🧋", foto: "img/esteh.jpg" },
   { id: 9, nama: "Es Jeruk", harga: 6000, kat: "Minuman", e: "🍊", foto: "img/esjeruk.jpg" },
-  { id: 10, nama: "Ricebowl", harga: 15000, kat: "Cemilan", e: "🍜", foto: "img/ricebowl.jpg" },
+  { id: 10, nama: "Ricebowl", harga: 15000, kat: "Nasi", e: "🍚", foto: "img/ricebowl.jpg" },
   { id: 11, nama: "Cireng", harga: 10000, kat: "Cemilan", e: "🥟", foto: "img/cireng.jpg" },
   { id: 12, nama: "Es Teler", harga: 20000, kat: "Minuman", e: "🧋", foto: "img/esteler.jpg" },
   { id: 13, nama: "Nasi Uduk Betawi", harga: 17000, kat: "Nasi", e: "🍚", foto: "img/nasiudukbetawi.jpg" },
   { id: 14, nama: "Nasi Ayam Geprek", harga: 15000, kat: "Nasi", e: "🍚", foto: "img/ayamgeprek.jpg" },
   { id: 15, nama: "Nasi Ayam Bakar", harga: 20000, kat: "Nasi", e: "🍚", foto: "img/ayambakar.jpg" },
-  { id: 16, nama: "Nasi Ayam Kremes", harga: 20000, kat: "Nasi", e: "🍚", foto: "img/ayamkremes.jpg" }
+  { id: 16, nama: "Nasi Ayam Kremes", harga: 20000, kat: "Nasi", e: "🍚", foto: "img/ayamkremes.jpg" },
+  { id: 17, nama: "Spaghetti", harga: 10000, kat: "Cemilan", e: "🍜", foto: "img/spagetti.jpg" },
+   { id: 18, nama: "Kimbap", harga: 15000, kat: "Sushi", e: "🍣", foto: "img/kimbap.jpg" }
 ];
 
 // ===== FUNGSI BANTU =====
