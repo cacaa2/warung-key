@@ -6,6 +6,10 @@ const QRIS_FOTO = "img/qris.png"; // gambar QRIS warung (ada di folder img)
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbwzkZVuLyeEb4aPmxzKLpasIrk0mxy46eCJq4j-C041kPDQlHDz_AvR3ujPOABAPyA/exec";
 const QRIS_AKTIF = true; // ganti true kalau QRIS sudah siap dipakai
 const ONGKIR = 3000; // tarif antar flat, khusus wilayah Jakarta
+const ALAMAT = "Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, DKI Jakarta 13420";
+const ALAMAT_SINGKAT = "Jl. R.Mangun Muka Raya, Rawamangun, Jakarta Timur"; // untuk tampil di kartu
+const JAM_BUKA = "07.00 - 17.00";
+const MAPS_URL = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(ALAMAT);
 // foto: isi path foto di folder img, contoh "img/steak-ayam.jpg". Kosong = pakai emoji.
 const MENU = [
   { id: 1, nama: "Steak Ayam", harga: 25000, kat: "Steak", e: "🍗", foto: "img/steakayam.jpg" },
@@ -54,7 +58,7 @@ function renderPromo() {
     { c: "", t: "Pilihan Key", s: a.nama, p: rp(a.harga), foto: a.foto, e: a.e },
     { c: "red", t: "Mulai dari", s: z.nama, p: rp(z.harga), foto: z.foto, e: z.e },
    { c: "", t: "Antar Jakarta", s: "Ongkir flat " + rp(ONGKIR), foto: "img/ongkir.jpg", e: "🛵" },
-   { c: "w3", t: "Jam buka", s: "07.00 - 17.00", foto: "img/jambuka.jpg", e: "🕙" },
+  { c: "w3", t: "Lokasi", s: ALAMAT_SINGKAT + " • Buka " + JAM_BUKA, foto: "img/lokasi.jpg", e: "📍", link: MAPS_URL },
    { c: "w3", t: "Pembayaran", s: QRIS_AKTIF ? "Cash & QRIS" : "Cash", foto: "img/pembayaran.jpg", e: "💵", btn: 1 }
   ];
   promo.innerHTML = P.map(x => `<div class="pc ${x.c}"><div><h3>${x.t}</h3><small>${x.s}</small>${x.p ? `<div class="pp">${x.p}</div>` : ""}${x.btn ? `<a class="btn p" href="#menu">Pesan sekarang</a>` : ""}</div><div class="pcirc">${x.foto ? `<img src="${x.foto}" alt="${x.s}" onerror="this.parentNode.textContent='${x.e}'">` : x.e}</div></div>`).join("");
