@@ -3,7 +3,7 @@ const WA = "62881024851406"; // nomor WhatsApp warung, format 62 tanpa +
 const HERO_FOTO = "img/hero.jpg";
 const QRIS_FOTO = "img/qris.png"; // gambar QRIS warung (ada di folder img)
 // Alamat Google Apps Script (berakhiran /exec). Kosongkan "" kalau belum dipasang.
-const SHEET_URL = "";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbwzkZVuLyeEb4aPmxzKLpasIrk0mxy46eCJq4j-C041kPDQlHDz_AvR3ujPOABAPyA/exec";
 const QRIS_AKTIF = true; // ganti true kalau QRIS sudah siap dipakai
 const ONGKIR = 3000; // tarif antar flat, khusus wilayah Jakarta
 // foto: isi path foto di folder img, contoh "img/steak-ayam.jpg". Kosong = pakai emoji.
