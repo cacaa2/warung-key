@@ -322,3 +322,6 @@ header,.strip,footer,input,select,.ta,.panel,.stat,.opt,.cm,.cmp,.ci,.pcirc,.bad
   .banner{padding:22px}
   .banner h2{font-size:1.4rem}
 }
+/* ===== jarak kiri-kanan section ===== */
+.sec{padding-left:20px;padding-right:20px}
+@media(max-width:760px){.sec{padding-left:16px;padding-right:16px}}
