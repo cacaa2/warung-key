@@ -293,9 +293,9 @@ const ONGKIR_CATERING = ONGKIR; // ongkir catering (sama dengan ongkir biasa). U
     <label>Cara terima pesanan</label>
     <div class="opts">
       <label class="opt on"><input type="radio" name="ctTerima" value="Ambil di warung" checked>🏪 Ambil di warung<br><small>gratis ongkir</small></label>
-      <label class="opt"><input type="radio" name="ctTerima" value="Antar ke lokasi (Karawang)">🛵 Antar ke lokasi<br><small>khusus Karawang, +${rp(ONGKIR_CATERING)}</small></label>
+      <label class="opt"><input type="radio" name="ctTerima" value="Antar ke lokasi (Jakarta)">🛵 Antar ke lokasi<br><small>khusus Jakarta, +${rp(ONGKIR_CATERING)}</small></label>
     </div>
-    <div id="ctAntar" hidden><label>Alamat lokasi acara (Karawang)</label><textarea id="ctAlamat" class="ta" rows="3" maxlength="200" placeholder="Jalan, RT/RW, desa/kelurahan, kecamatan, patokan"></textarea></div>
+    <div id="ctAntar" hidden><label>Alamat lokasi acara (Jakarta)</label><textarea id="ctAlamat" class="ta" rows="3" maxlength="200" placeholder="Jalan, RT/RW, desa/kelurahan, kecamatan, patokan"></textarea></div>
     <label>Catatan (opsional)</label><input id="ctCatatan" maxlength="100" placeholder="Contoh: pedas sedikit">
     <label>Metode bayar</label><select id="ctMetode">${QRIS_AKTIF ? '<option value="QRIS">QRIS</option>' : ""}<option value="Cash">Cash</option></select>
     <div class="cring">
@@ -330,7 +330,7 @@ const ONGKIR_CATERING = ONGKIR; // ongkir catering (sama dengan ongkir biasa). U
     const metode = v("ctMetode"), cash = metode === "Cash";
     const o = {
       id: "CTR-" + Date.now().toString().slice(-6), waktu: new Date().toISOString(), nama: v("ctNama").slice(0, 50),
-      layanan: antar() ? "Catering - Antar (Karawang)" : "Catering - Ambil di warung",
+      layanan: antar() ? "Catering - Antar (Jakarta)" : "Catering - Ambil di warung",
       hp: v("ctHp").slice(0, 20), alamat: antar() ? v("ctAlamat").slice(0, 200) : "",
       catatan: ("Acara: " + tgl + (v("ctCatatan") ? " | " + v("ctCatatan") : "")).slice(0, 200),
       metode, status: cash ? "catering - bayar di tempat" : "catering - menunggu konfirmasi",
