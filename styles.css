@@ -373,3 +373,18 @@ header,.strip,footer,input,select,.ta,.panel,.stat,.opt,.cm,.cmp,.ci,.pcirc,.bad
   .abt-bg{width:min(240px,70%)}
   .abt-img img{max-width:260px}
 }
+/* ===== foto Tentang: kotak berframe ===== */
+.abt-img{min-height:0;overflow:visible}
+.abt-img img{
+  display:block;
+  width:100%;
+  max-width:440px;
+  height:auto;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:28px;
+  border:1px solid #f0dcd2;
+  box-shadow:0 12px 30px #b0183d26;
+  filter:none;
+}
+.abt-bg{display:none}
