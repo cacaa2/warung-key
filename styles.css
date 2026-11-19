@@ -420,6 +420,17 @@ header,.strip,footer,input,select,.ta,.panel,.stat,.opt,.cm,.cmp,.ci,.pcirc,.bad
   .abt-img img{max-width:240px}
   .abt-img::before{width:min(290px,100%)}
 }
+/* ===== kartu menu: tanpa garis tebal (taruh PALING BAWAH) ===== */
+.grid .card{
+  border:1px solid #f0dcd2;
+  border-radius:20px;
+  box-shadow:0 6px 20px #b0183d1a;
+}
+.grid .card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 14px 30px #b0183d2e;
+}
+.grid .card .badge{border:0;box-shadow:0 2px 8px #0002}
 @media(max-width:760px){
   .abt{grid-template-columns:1fr}
   .abt-img img{max-width:220px;margin:0 auto}
