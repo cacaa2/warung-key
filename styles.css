@@ -364,3 +364,12 @@ header,.strip,footer,input,select,.ta,.panel,.stat,.opt,.cm,.cmp,.ci,.pcirc,.bad
   .abt-list li{font-size:.9rem}
   .abt-cta .btn{flex:1;padding:10px 14px;font-size:.88rem}
 }
+/* ===== Tentang: perbaikan HP ===== */
+#keunggulan{padding-left:20px;padding-right:20px}
+
+@media(max-width:760px){
+  #keunggulan{padding-left:20px;padding-right:20px}
+  .abt-img{min-height:250px;overflow:hidden}
+  .abt-bg{width:min(240px,70%)}
+  .abt-img img{max-width:260px}
+}
