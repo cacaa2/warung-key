@@ -352,3 +352,15 @@ header,.strip,footer,input,select,.ta,.panel,.stat,.opt,.cm,.cmp,.ci,.pcirc,.bad
 /* ===== jarak kiri-kanan section ===== */
 .sec{padding-left:20px;padding-right:20px}
 @media(max-width:760px){.sec{padding-left:16px;padding-right:16px}}
+@media(max-width:760px){
+  html{font-size:14.5px}
+}
+@media(max-width:760px){
+  .abt{gap:18px}
+  .abt-img{min-height:210px}
+  .abt-img img{max-width:250px}
+  .abt-h{font-size:1.6rem;margin-bottom:12px}
+  .abt-list{gap:8px;margin:12px 0 18px}
+  .abt-list li{font-size:.9rem}
+  .abt-cta .btn{flex:1;padding:10px 14px;font-size:.88rem}
+}
