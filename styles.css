@@ -388,3 +388,12 @@ header,.strip,footer,input,select,.ta,.panel,.stat,.opt,.cm,.cmp,.ci,.pcirc,.bad
   filter:none;
 }
 .abt-bg{display:none}
+/* ===== foto Tentang: versi kecil ===== */
+.abt{grid-template-columns:.8fr 1.2fr;gap:36px}
+.abt-img{justify-content:center}
+.abt-img img{max-width:300px;border-radius:24px}
+
+@media(max-width:760px){
+  .abt{grid-template-columns:1fr}
+  .abt-img img{max-width:220px;margin:0 auto}
+}
