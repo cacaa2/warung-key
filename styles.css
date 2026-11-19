@@ -257,3 +257,110 @@ nav a{font-size:1.2rem}
 .cq{width:76px;flex:none;text-align:center;padding:7px}
 .cring{background:var(--krem);border:2px dashed var(--pink);border-radius:16px;padding:4px 16px;margin-top:14px}
 .cring .tot{margin:8px 0}
+/* ===== ganti warna garis & bayangan ===== */
+:root{--garis:#5b1a2c;--bayang:#F0A9A0}
+
+/* tombol */
+.btn{border-color:var(--garis);box-shadow:0 3px 0 var(--garis)}
+.btn:hover{box-shadow:0 5px 0 var(--garis)}
+.btn:active{box-shadow:0 1px 0 var(--garis)}
+.opt.on{box-shadow:0 3px 0 var(--garis)}
+
+/* kartu & kotak */
+.card,.catbar,.pc,.ctile,.cform,.af{border-color:var(--garis);box-shadow:4px 4px 0 var(--bayang)}
+.card:hover{box-shadow:6px 10px 0 var(--bayang)}
+.banner{border-color:var(--garis);box-shadow:6px 6px 0 var(--bayang)}
+dialog{border-color:var(--garis)}
+dialog[open]{box-shadow:8px 8px 0 var(--bayang)}
+
+/* garis (outline) lainnya */
+header,.strip,footer,input,select,.ta,.panel,.stat,.opt,.cm,.cmp,.ci,.pcirc,.badge,.st,.tag,.qty button,.logo i,.lbar,.blob{border-color:var(--garis)}
+/* ===== bar kategori: transparan, tanpa outline ===== */
+.catbar{
+  background:rgba(255,255,255,.55);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border:0;
+  box-shadow:0 8px 24px #b0183d14;
+}
+/* ===== perbaikan tampilan HP ===== */
+@media(max-width:760px){
+  .wrap{padding:0 14px}
+  .sec{padding:32px 0}
+
+  /* header */
+  .bar{padding:8px 12px;gap:8px}
+  .logo{font-size:1.05rem;gap:8px}
+  .logo i{width:38px;height:38px}
+  nav{gap:16px}
+  nav a{font-size:.88rem}
+  .act .btn{font-size:.8rem;padding:7px 12px}
+
+  /* Home */
+  #home{padding:0 16px}
+  #home .hero{padding:16px 0 28px;gap:20px}
+  #home .tag{font-size:.78rem;padding:4px 14px}
+  #home .hero h1{font-size:clamp(2.1rem,9.5vw,2.8rem)}
+  #home .hero p{font-size:.95rem}
+  #home .btn{font-size:.92rem;padding:10px 22px}
+  #home .wlink{font-size:.95rem}
+  #home .play{width:44px;height:44px}
+  #home .proof{font-size:.9rem}
+  #home .blob{width:min(290px,76vw);font-size:7rem}
+  #home .visual::before{width:min(340px,88vw)}
+  #home .chip{padding:7px 11px}
+  #home .chip b{font-size:.85rem}
+  #home .chip small{font-size:.68rem}
+  #home .chip .ic{width:30px;height:30px}
+  #home .heart{width:40px;height:40px;font-size:1.1rem}
+
+  /* judul & kartu */
+  h2.t{font-size:1.5rem}
+  .pc{padding:14px 16px;min-height:120px}
+  .pcirc{width:76px;height:76px}
+  .ci{width:54px;height:54px}
+  .banner{padding:22px}
+  .banner h2{font-size:1.4rem}
+  /* ===== kartu menu: lebih natural ===== */
+.card{
+  border:1px solid #f0dcd2;
+  border-radius:20px;
+  box-shadow:0 6px 20px #b0183d1a;
+}
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 14px 30px #b0183d2e;
+}
+/* label kategori */
+.badge{border:0;box-shadow:0 2px 8px #0002}
+  /* ===== Tentang: foto + teks ala referensi ===== */
+.abt{display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:center;max-width:1050px;margin:0 auto}
+.abt-img{position:relative;display:grid;place-items:center;min-height:340px}
+.abt-bg{position:absolute;width:88%;aspect-ratio:1;background:linear-gradient(145deg,#FFE0BC,var(--kuning));border-radius:58% 42% 52% 48%/50% 55% 45% 50%;opacity:.7}
+.abt-img img{position:relative;width:100%;max-width:460px;height:auto;object-fit:contain;filter:drop-shadow(0 14px 18px #b0183d33)}
+.abt-txt{text-align:left}
+.abt-txt .eyebrow{text-align:left}
+.abt-h{font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.1;margin:6px 0 16px}
+.abt-h em{font-style:normal;color:var(--pink)}
+#keunggulan .abt-txt p{background:none;border:0;border-radius:0;padding:0;margin:0 0 12px;text-align:left;line-height:1.7;color:#5a4048}
+.abt-list{list-style:none;margin:16px 0 22px;padding:0;display:grid;gap:10px}
+.abt-list li{display:flex;align-items:center;gap:10px;font-weight:600}
+.abt-list li::before{content:"✓";flex:none;width:22px;height:22px;border-radius:50%;background:var(--marun);color:#fff;display:grid;place-items:center;font-size:.75rem}
+.abt-cta{display:flex;gap:12px;flex-wrap:wrap}
+@media(max-width:760px){.abt{grid-template-columns:1fr;gap:24px}.abt-img{min-height:260px}.abt-img img{max-width:320px}}
+}
+/* ===== jarak kiri-kanan section ===== */
+.sec{padding-left:20px;padding-right:20px}
+@media(max-width:760px){.sec{padding-left:16px;padding-right:16px}}
+@media(max-width:760px){
+  html{font-size:14.5px}
+}
+@media(max-width:760px){
+  .abt{gap:18px}
+  .abt-img{min-height:210px}
+  .abt-img img{max-width:250px}
+  .abt-h{font-size:1.6rem;margin-bottom:12px}
+  .abt-list{gap:8px;margin:12px 0 18px}
+  .abt-list li{font-size:.9rem}
+  .abt-cta .btn{flex:1;padding:10px 14px;font-size:.88rem}
+}
