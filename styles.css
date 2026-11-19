@@ -331,19 +331,6 @@ header,.strip,footer,input,select,.ta,.panel,.stat,.opt,.cm,.cmp,.ci,.pcirc,.bad
   transform:translateY(-5px);
   box-shadow:0 14px 30px #b0183d2e;
 }
-
-/* tombol Tambah */
-.card .btn{
-  border:0;
-  box-shadow:none;
-  background:var(--kuning);
-}
-.card .btn:hover{
-  background:#ffc93d;
-  box-shadow:none;
-  transform:none;
-}
-
 /* label kategori */
 .badge{border:0;box-shadow:0 2px 8px #0002}
 }
